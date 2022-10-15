@@ -2,8 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - default
+  - namespaces.yaml
   - flux-system
   - kube-system
   - networking
-  - system-upgrade
+  # - system-upgrade
