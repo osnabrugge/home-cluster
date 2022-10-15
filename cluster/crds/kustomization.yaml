@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - cert-manager
   - metallb
+  - system-upgrade-controller
