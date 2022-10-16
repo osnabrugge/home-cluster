@@ -22,7 +22,7 @@ spec:
       main:
         ports:
           http:
-          enabled: false
+            enabled: false
 
     cni:
       image:
