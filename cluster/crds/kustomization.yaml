@@ -5,5 +5,5 @@ resources:
   - cloudnative-pg
   - kube-prometheus-stack
   - metallb
-  # - rook-ceph
+  - rook-ceph
   # - whereabouts
