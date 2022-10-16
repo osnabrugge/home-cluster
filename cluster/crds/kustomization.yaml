@@ -5,4 +5,4 @@ resources:
   - kube-prometheus-stack
   - metallb
   - rook-ceph
-  - whereabouts
+  # - whereabouts
