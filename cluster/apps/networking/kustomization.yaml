@@ -8,5 +8,3 @@ resources:
   - ingress-nginx
   - k8s-gateway
   - metallb
-  - multus
-  # - whereabouts

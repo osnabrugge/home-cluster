@@ -8,13 +8,12 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: whereabouts
+      chart: app-template
       version: 3.5.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s
         namespace: flux-system
-      interval: 30m
   values:
     image:
       repository: ghcr.io/k8snetworkplumbingwg/whereabouts
@@ -29,4 +28,4 @@ spec:
         config: /etc/cni/net.d
         bin: /opt/cni/bin
 
-      version: "0.3.1"
+      version: "0.5.4"

@@ -4,4 +4,6 @@ kind: Kustomization
 resources:
   - namespaces.yaml
   - cert-manager
+  - multus
   - rook-ceph
+  - whereabouts
