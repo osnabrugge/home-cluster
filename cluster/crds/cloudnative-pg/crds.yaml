@@ -2,25 +2,24 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: whereabouts-source
+  name: cloudnative-pg-source
   namespace: flux-system
 spec:
   interval: 12h
-  url: https://github.com/k8snetworkplumbingwg/whereabouts.git
+  url: https://github.com/cloudnative-pg/cloudnative-pg.git
   ref:
-    tag: v0.5.4
+    # renovate: datasource=github-releases depName=cloudnative-pg/cloudnative-pg
+    tag: "v1.17.1"
   ignore: |
     # exclude all
     /*
     # include crd directory
-    !/doc/crds
-    # exclude ip-reconciler-job
-    /doc/crds/ip-reconciler-job.yaml
+    !/config/crd/bases
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: crds-whereabouts
+  name: crds-cloudnative-pg
   namespace: flux-system
 spec:
   interval: 30m
@@ -28,4 +27,4 @@ spec:
   wait: true
   sourceRef:
     kind: GitRepository
-    name: whereabouts-source
+    name: cloudnative-pg-source
