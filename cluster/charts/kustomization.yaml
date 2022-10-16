@@ -5,11 +5,13 @@ resources:
   - bitnami-charts.yaml
   - bjw-s-charts.yaml
   - external-dns-charts.yaml
-  - hajimari-charts.yaml
+  - fairwinds-charts.yaml
+  - grafana-charts.yaml
   - ingress-nginx-charts.yaml
   - jetstack-charts.yaml
-  - kubereboot-charts.yaml
-  - k8s-gateway-charts.yaml
-  - metallb-charts.yaml
+  - k8s-at-home-charts.yaml
   - metrics-server-charts.yaml
+  - project-calico-charts.yaml
+  - prometheus-community-charts.yaml
+  - rook-ceph-charts.yaml
   - stakater-charts.yaml
