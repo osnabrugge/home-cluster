@@ -7,4 +7,3 @@ resources:
   - flux-system
   - multus
   - rook-ceph
-  - whereabouts

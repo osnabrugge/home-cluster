@@ -2,23 +2,23 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: rook-ceph-source
+  name: whereabouts-source
   namespace: flux-system
 spec:
   interval: 12h
-  url: https://github.com/rook/rook.git
+  url: https://github.com/k8snetworkplumbingwg/whereabouts.git
   ref:
-    tag: v0.5.4
+    tag: v1.10.3
   ignore: |
     # exclude all
     /*
     # include crd directory
-    !/deploy/examples/crds.yaml
+    !/doc/crds
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: crds-rook-ceph
+  name: crds-whereabouts
   namespace: flux-system
 spec:
   interval: 30m
@@ -26,4 +26,4 @@ spec:
   wait: true
   sourceRef:
     kind: GitRepository
-    name: rook-ceph-source
+    name: whereabouts-source

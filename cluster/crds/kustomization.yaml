@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - metallb
   - rook-ceph
+  - whereabouts
