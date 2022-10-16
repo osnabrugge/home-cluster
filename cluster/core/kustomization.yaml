@@ -6,4 +6,4 @@ resources:
   - cert-manager
   - multus
   - rook-ceph
-  - whereabouts
+  # - whereabouts
