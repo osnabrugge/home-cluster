@@ -9,3 +9,4 @@ resources:
   - k8s-gateway
   - metallb
   - multus
+  # - whereabouts
