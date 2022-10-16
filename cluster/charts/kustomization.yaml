@@ -10,7 +10,6 @@ resources:
   - ingress-nginx-charts.yaml
   - jetstack-charts.yaml
   - k8s-at-home-charts.yaml
-  - metallb-charts.yaml
   - metrics-server-charts.yaml
   - project-calico-charts.yaml
   - prometheus-community-charts.yaml
