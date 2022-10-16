@@ -3,12 +3,12 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: k8s-gateway
-  namespace: networking
+  namespace: default
 spec:
   interval: 15m
   chart:
     spec:
-      chart: k8s-gateway
+      chart: k8s-gateway-charts
       version: 2.0.0
       sourceRef:
         kind: HelmRepository

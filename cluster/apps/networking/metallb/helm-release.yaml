@@ -3,12 +3,12 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: metallb
-  namespace: networking
+  namespace: default
 spec:
   interval: 15m
   chart:
     spec:
-      chart: metallb
+      chart: metallb-charts
       version: 0.13.5
       sourceRef:
         kind: HelmRepository
