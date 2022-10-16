@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - metrics-server
   - reloader
-  - system-upgrade
