@@ -83,11 +83,11 @@ spec:
             port: 8088
             protocol: TCP
             targetPort: 8088
-          mgmt-8043-tcp:
+          mgmt-443-tcp:
             enabled: true
-            port: 8043
+            port: 443
             protocol: TCP
-            targetPort: 8043
+            targetPort: 443
           portal-8843-tcp:
             enabled: true
             port: 8843
