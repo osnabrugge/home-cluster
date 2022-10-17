@@ -69,7 +69,11 @@ spec:
 
     service:
       main:
-        enabled: true
+        enabled:
+          main:
+            port: 443
+            protocol: HTTPS
+            targetPort: 443
       controller:
         enabled: true
         type: LoadBalancer
@@ -83,11 +87,11 @@ spec:
             port: 8088
             protocol: TCP
             targetPort: 8088
-          mgmt-443-tcp:
-            enabled: true
-            port: 443
-            protocol: TCP
-            targetPort: 443
+          # mgmt-443-tcp:
+          #   enabled: true
+          #   port: 443
+          #   protocol: TCP
+          #   targetPort: 443
           portal-8843-tcp:
             enabled: true
             port: 8843
