@@ -171,9 +171,6 @@ spec:
           secret:
             secretName: tls.omada
 
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
-
     resources:
       requests:
         memory: 1200M
