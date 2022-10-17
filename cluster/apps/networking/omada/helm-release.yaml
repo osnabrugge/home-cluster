@@ -70,10 +70,9 @@ spec:
     service:
       main:
         enabled:
-          main:
-            port: 443
-            protocol: HTTPS
-            targetPort: 443
+          ports:
+            http:
+              port: 443
       controller:
         enabled: true
         type: LoadBalancer
