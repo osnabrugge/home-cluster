@@ -34,6 +34,10 @@ spec:
       PORTAL_HTTPS_PORT: 8843
       SHOW_SERVER_LOGS: true
       SHOW_MONGODB_LOGS: true
+    ports:
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
     ingress:
       main:
         enabled: true
