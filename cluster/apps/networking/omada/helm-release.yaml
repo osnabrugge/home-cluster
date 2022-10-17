@@ -84,9 +84,8 @@ spec:
       controller:
         enabled: true
         type: LoadBalancer
+        loadBalancerIP: "${SVC_OMADA_ADDRESS}"
         externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/loadBalancerIPs: ${SVC_OMADA_ADDRESS}
         ports:
           mgmt-8088-tcp:
             enabled: true
