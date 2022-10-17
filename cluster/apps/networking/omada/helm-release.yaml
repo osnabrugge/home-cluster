@@ -5,39 +5,30 @@ metadata:
   name: omada-controller
   namespace: networking
 spec:
-  interval: 15m
+  interval: 5m
   chart:
     spec:
       chart: omada-controller
-      version: 4.4.2
+      version: 4.3.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
-      interval: 15m
-  install:
-    createNamespace: true
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
+      interval: 5m
   values:
     image:
       repository: mbentley/omada-controller
-      tag: "5.5"
+      tag: "5.3"
+
     env:
-      TZ: "${TIMEZONE}"
+      TZ: ${TIMEZONE}
       MANAGE_HTTP_PORT: 8088
-      MANAGE_HTTPS_PORT: 443
+      MANAGE_HTTPS_PORT: 8043
       PORTAL_HTTP_PORT: 8088
       PORTAL_HTTPS_PORT: 8843
       SHOW_SERVER_LOGS: true
       SHOW_MONGODB_LOGS: true
-    ports:
-      - containerPort: 443
-        hostPort: 443
-        protocol: TCP
+
     ingress:
       main:
         enabled: true
@@ -51,20 +42,21 @@ spec:
           # Add a proxy redirect because omada expects it and will redirect to the ssl port if it's not explicitly in the URL
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
           nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
-          nginx.ingress.kubernetes.io/upstream-vhost: "omada.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/upstream-vhost: "omada.${SECRET_DOMAIN}:8043"
+          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
 
-          # nginx.ingress.kubernetes.io/proxy-redirect-from: "~https://(.+):8043/(.+)/login$"
-          # nginx.ingress.kubernetes.io/proxy-redirect-to: "https://$http_host/$2/login"
+          nginx.ingress.kubernetes.io/proxy-redirect-from: "~https://(.+):8043/(.+)/login$"
+          nginx.ingress.kubernetes.io/proxy-redirect-to: "https://$http_host/$2/login"
 
           # Add a few more headers to make Omada happy
-          # nginx.ingress.kubernetes.io/configuration-snippet: |
-          #   proxy_set_header        X-Real-IP                 $remote_addr;
-          #   proxy_set_header        X-Forwarded-For           $proxy_add_x_forwarded_for;
-          #   proxy_set_header        Cookie                    $http_cookie;
-          #   proxy_set_header        X-Forwarded-Proto         $scheme;
-          #   proxy_set_header        Upgrade                   $http_upgrade;
-          #   proxy_set_header        Connection                "upgrade";
-
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header        X-Real-IP                 $remote_addr;
+            proxy_set_header        X-Forwarded-For           $proxy_add_x_forwarded_for;
+            proxy_set_header        Cookie                    $http_cookie;
+            proxy_set_header        X-Forwarded-Proto         $scheme;
+            proxy_set_header        Upgrade                   $http_upgrade;
+            proxy_set_header        Connection                "upgrade";
         hosts:
           - host: *host
             paths:
@@ -74,15 +66,14 @@ spec:
           - hosts:
               - *host
             secretName: "{{ .Release.Name }}-tls"
-      service:
-        main:
-          ports:
-            http:
-              port: 443
+
+    service:
+      main:
+        enabled: true
       controller:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: "${SVC_OMADA_ADDR}"
+        loadBalancerIP: "${SVC_OMADA_ADDRESS}"
         externalTrafficPolicy: Local
         ports:
           # see https://www.tp-link.com/us/support/faq/3265/
@@ -92,11 +83,11 @@ spec:
             port: 8088
             protocol: TCP
             targetPort: 8088
-          mgmt-443-tcp:
+          mgmt-8043-tcp:
             enabled: true
-            port: 443
+            port: 8043
             protocol: TCP
-            targetPort: 443
+            targetPort: 8043
           portal-8843-tcp:
             enabled: true
             port: 8843
@@ -150,6 +141,15 @@ spec:
             port: 27217
             protocol: TCP
             targetPort: 27217
+
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
     persistence:
       data:
         enabled: true
@@ -169,7 +169,10 @@ spec:
         type: custom
         volumeSpec:
           secret:
-            secretName: omada-controller-tls
+            secretName: tls.omada
+
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
 
     resources:
       requests:
@@ -177,6 +180,3 @@ spec:
         cpu: 1200m
       limits:
         memory: 1500M
-
-    args:
-      - "--sysctl net.ipv4.ip_unprivileged_port_start=0"
