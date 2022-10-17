@@ -163,13 +163,6 @@ spec:
         enabled: true
         mountPath: /opt/tplink/EAPController/logs
         existingClaim: omada-logs-pvc
-      cert:
-        enabled: true
-        mountPath: /cert
-        type: custom
-        volumeSpec:
-          secret:
-            secretName: tls.omada
 
     resources:
       requests:
