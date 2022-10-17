@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: omada-exporter
+  namespace: monitoring
+spec:
+  interval: 5m
+  releaseName: omada-exporter
+  chart:
+    spec:
+      chart: omada-exporter
+      version: 0.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: charlie-haley-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: chhaley/omada_exporter
+      tag: "0.5.0"
+
+    env:
+      TZ: ${TIMEZONE}
+
+    omada:
+      host: "https://${SVC_OMADA_ADDRESS}:8043"
+      insecure: true
+
+    resources:
+      requests:
+        memory: 500Mi
+        cpu: 35m
+      limits:
+        memory: 750Mi
+
+  valuesFrom:
+    - kind: Secret
+      name: omada-exporter-secrets
+      valuesKey: site
+      targetPath: config.value.omada.site
+    - kind: Secret
+      name: omada-exporter-secrets
+      valuesKey: username
+      targetPath: config.value.omada.username
+    - kind: Secret
+      name: omada-exporter-secrets
+      valuesKey: password
+      targetPath: config.value.omada.password

@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - bitnami-charts.yaml
   - bjw-s-charts.yaml
+  - charlie-haley-charts.yaml
   - cloudnative-pg-charts.yaml
   - external-dns-charts.yaml
   - fairwinds-charts.yaml
