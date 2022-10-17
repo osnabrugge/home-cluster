@@ -24,6 +24,7 @@ spec:
   values:
     global:
       nameOverride: *app
+    hostNetwork: true
     image:
       repository: mbentley/omada-controller
       tag: "5.5"
