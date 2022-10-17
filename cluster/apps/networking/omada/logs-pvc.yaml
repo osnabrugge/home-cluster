@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: omada-logs-pvc
-  namespace: networkung
+  namespace: networking
 spec:
   accessModes:
     - ReadWriteOnce
