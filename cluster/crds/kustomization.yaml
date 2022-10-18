@@ -6,4 +6,5 @@ resources:
   - kube-prometheus-stack
   - metallb
   - rook-ceph
+  - system-upgrade-controller
   # - whereabouts

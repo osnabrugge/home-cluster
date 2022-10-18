@@ -4,19 +4,15 @@ kind: Plan
 metadata:
   name: k3s-server
   namespace: system-upgrade
+  labels:
+    k3s-upgrade: server
 spec:
+  version: "v1.25.2+k3s1"
   serviceAccountName: system-upgrade
   concurrency: 1
-  channel: https://update.k3s.io/v1-release/channels/v1.25
   cordon: true
   nodeSelector:
     matchExpressions:
-      - key: node-role.kubernetes.io/master
-        operator: In
-        values:
-          - "true"
-  tolerations:
-    - key: "node-role.kubernetes.io/master"
-      operator: "Exists"
+      - {key: node-role.kubernetes.io/control-plane, operator: Exists}
   upgrade:
     image: rancher/k3s-upgrade
