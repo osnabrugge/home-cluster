@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: networking
 resources:
   - ./helmrelease.yaml
-  # - ./macvlan-conf.yaml
+  - ./macvlan-conf.yaml
