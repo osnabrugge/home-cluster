@@ -4,9 +4,9 @@ kind: Kustomization
 resources:
   - namespaces.yaml
   # - databases
-  - downloaders
+  # - downloaders
   - kube-system
   - networking
   - monitoring
   # - media-automation
-  - web-tools
+  # - web-tools
