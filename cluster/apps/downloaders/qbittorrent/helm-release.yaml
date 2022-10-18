@@ -78,11 +78,6 @@ spec:
       config:
         enabled: true
         existingClaim: qbittorrent-config
-      configfiles:
-        enabled: true
-        type: configMap
-        name: qbittorrent-config
-        mountPath: "-"
       media:
         enabled: true
         mountPath: /data/nas
