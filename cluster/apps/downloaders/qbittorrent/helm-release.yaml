@@ -73,7 +73,7 @@ spec:
       supplementalGroups:
         - 100
     podAnnotations:
-      k8s.v1.cni.cncf.io/networks: default/macvlan-conf
+      k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
     persistence:
       config:
         enabled: true
