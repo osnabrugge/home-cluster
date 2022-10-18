@@ -21,8 +21,8 @@ spec:
 
     admin:
       existingSecret: grafana-secrets
-      passwordKey: admin-password
-      userKey: admin-user
+      passwordKey: adminPass
+      userKey: adminUser
 
     dashboardProviders:
       dashboardproviders.yaml:
