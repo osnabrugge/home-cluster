@@ -27,6 +27,8 @@ spec:
     pspEnable: false
     monitoring:
       enabled: true
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 10m
