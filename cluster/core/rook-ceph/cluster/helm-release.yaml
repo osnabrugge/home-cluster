@@ -25,9 +25,9 @@ spec:
     - name: rook-ceph-operator
       namespace: rook-ceph
   values:
-    # monitoring:
-    #   enabled: true
-    #   createPrometheusRules: true
+    monitoring:
+      enabled: true
+      createPrometheusRules: true
     ingress:
       dashboard:
         ingressClassName: "nginx"
