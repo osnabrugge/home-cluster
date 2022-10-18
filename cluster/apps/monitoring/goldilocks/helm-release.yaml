@@ -23,6 +23,8 @@ spec:
       retries: 5
   values:
     controller:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
       resources:
         requests:
           cpu: 10m
