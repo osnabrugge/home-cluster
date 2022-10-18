@@ -26,5 +26,3 @@ spec:
       create: false
     crds:
       enabled: false
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
