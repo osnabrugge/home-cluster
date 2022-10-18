@@ -27,7 +27,7 @@ spec:
       tag: 4.4.5
     env:
       TZ: "${TIMEZONE}"
-      QBITTORRENT__PORT: &port 80
+      QBITTORRENT__PORT: &port 8080
       QBITTORRENT__BT_PORT: &port-bt 42883
     service:
       main:
@@ -78,15 +78,25 @@ spec:
       config:
         enabled: true
         existingClaim: qbittorrent-config
+      cache:
+        enabled: true
+        type: emptyDir
+        mountPath: /config/qBittorrent/cache
+      configfiles:
+        enabled: true
+        type: configMap
+        name: qbittorrent-config
+        mountPath: "-"
+      data:
+        enabled: true
+        existingClaim: qbittorrent-config
+        mountPath: /config/qBittorrent/data
       media:
         enabled: true
         mountPath: /data/nas
         path: /volume2/share
         server: 192.168.88.11
         type: nfs
-      incomplete:
-        enabled: true
-        type: emptyDir
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:

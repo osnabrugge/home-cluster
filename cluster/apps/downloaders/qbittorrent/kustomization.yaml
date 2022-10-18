@@ -4,3 +4,13 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
+commonLabels:
+  app.kubernetes.io/name: qbittorrent
+  app.kubernetes.io/instance: qbittorrent
+configMapGenerator:
+  - name: qbittorrent-config
+    files:
+      - config/categories.json
+      - config/qBittorrent.conf
+generatorOptions:
+  disableNameSuffixHash: true

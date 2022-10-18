@@ -1,0 +1,11 @@
+{
+  "Movies": {
+      "save_path": "/data/nas/downloads/radarr"
+  },
+  "TV": {
+      "save_path": "/data/nas/downloads/sonarr"
+  },
+  "Other": {
+      "save_path": "/data/nas/media/video/other"
+  }
+}
