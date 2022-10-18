@@ -30,8 +30,6 @@ spec:
       pspEnabled: false
     admin:
       existingSecret: grafana-admin
-      userKey: admin-user
-      passwordKey: admin-password
     envFromSecrets:
       - name: grafana
     dashboardProviders:
