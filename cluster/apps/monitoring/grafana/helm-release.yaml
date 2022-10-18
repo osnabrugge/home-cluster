@@ -121,6 +121,8 @@ spec:
     rbac:
       pspEnabled: false
 
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       limits:
         memory: 219M
