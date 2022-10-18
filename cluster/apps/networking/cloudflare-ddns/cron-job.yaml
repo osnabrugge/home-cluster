@@ -40,3 +40,5 @@ spec:
                       items:
                         - key: cloudflare-ddns.sh
                           path: cloudflare-ddns.sh
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
