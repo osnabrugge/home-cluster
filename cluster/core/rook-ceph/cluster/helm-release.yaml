@@ -51,8 +51,26 @@ spec:
         urlPrefix: /
         ssl: false
       storage:
-        useAllNodes: true
-        useAllDevices: true
+        useAllNodes: false
+        useAllDevices: false
+        config:
+          osdsPerDevice: "1"
+        nodes:
+          - name: kube04
+            devices:
+              - name: "sdb"
+          - name: kube05
+            devices:
+              - name: "sdb"
+          - name: kube06
+            devices:
+              - name: "sdb"
+          - name: kube07
+            devices:
+              - name: "sdb"
+          - name: kube08
+            devices:
+              - name: "sdb"
     # cephBlockPoolsVolumeSnapshotClass:
     #   enabled: true
     #   name: csi-rbdplugin-snapclass
