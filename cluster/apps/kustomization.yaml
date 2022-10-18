@@ -9,4 +9,5 @@ resources:
   - networking
   - monitoring
   # - media-automation
-  # - web-tools
+  - system-upgrade
+  - web-tools
