@@ -5,104 +5,138 @@ metadata:
   name: grafana
   namespace: monitoring
 spec:
-  interval: 15m
   chart:
     spec:
       chart: grafana
-      version: 6.42.1
+      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
         namespace: flux-system
-  install:
-    createNamespace: true
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
-  dependsOn:
-    - name: postgres
-      namespace: databases
+      version: 6.42.2
+  interval: 30m
+  timeout: 20m
   values:
-    replicas: 3
-    rbac:
-      pspEnabled: false
+    replicas: 1
+
     admin:
-      existingSecret: grafana-admin
-    envFromSecrets:
-      - name: grafana
+      existingSecret: grafana-secrets
+      passwordKey: adminPass
+      userKey: adminUser
+
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: "default"
-            orgId: 1
-            folder: ""
-            type: file
-            disableDeletion: false
+          - disableDeletion: false
             editable: true
+            folder: ""
+            name: default
             options:
               path: /var/lib/grafana/dashboards/default
+            orgId: 1
+            type: file
+
+    dashboards:
+      default:
+        node-exporter-full:
+          datasource: Prometheus
+          url: https://grafana.com/api/dashboards/1860/revisions/22/download
+
     datasources:
       datasources.yaml:
         apiVersion: 1
         datasources:
-          - name: Prometheus
-            type: prometheus
-            access: proxy
-            url: http://thanos-query.monitoring.svc.cluster.local:9090
+          - access: proxy
             isDefault: true
-    dashboards:
-      default:
-        # Ref: https://grafana.com/grafana/dashboards/7845
-        zfs:
-          gnetId: 7845
-          revision: 4
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13502
-        minio:
-          gnetId: 13502
-          revision: 10
-          datasource: Prometheus
-    sidecar:
-      dashboards:
-        enabled: true
-        searchNamespace: ALL
-        # folderAnnotation: grafana_folder
-        # provider:
-        #   foldersFromFilesStructure: true
-      datasources:
-        enabled: true
-        searchNamespace: ALL
+            name: Prometheus
+            type: prometheus
+            url: http://thanos-query.monitoring:9090
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
+
+    deploymentStrategy:
+      type: Recreate
+
+    env:
+      GF_ANALYTICS_CHECK_FOR_UPDATES: false
+      GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+      GF_EXPLORE_ENABLED: true
+      GF_GRAFANA_NET_URL: https://grafana.net
+      GF_LOG_FILTERS: rendering:debug
+      GF_PANELS_DISABLE_SANITIZE_HTML: true
+      GF_PATHS_DATA: /var/lib/grafana/data
+      GF_PATHS_LOGS: /var/log/grafana
+      GF_PATHS_PLUGINS: /var/lib/grafana/plugins
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+      GF_SECURITY_ALLOW_EMBEDDING: true
+      GF_SECURITY_COOKIE_SAMESITE: grafana
+      GF_SERVER_ROOT_URL: "https://grafana.${SECRET_DOMAIN}"
+
+    grafana.ini:
+      analytics:
+        check_for_updates: false
+      grafana_net:
+        url: https://grafana.net
+      log:
+        mode: console
+      paths:
+        data: /var/lib/grafana/data
+        logs: /var/log/grafana
+        plugins: /var/lib/grafana/plugins
+        provisioning: /etc/grafana/provisioning
+      server:
+        root_url: https://grafana.${SECRET_DOMAIN}
+
+    imageRenderer:
+      enabled: true
+
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        auth.home.arpa/enabled: "true"
+      hosts:
+        - &host grafana.${SECRET_DOMAIN}
+      tls:
+        - hosts:
+            - *host
+
+    persistence:
+      enabled: false
+
     plugins:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
       - grafana-piechart-panel
+      - vonage-status-panel
       - grafana-worldmap-panel
       - grafana-clock-panel
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: grafana
+
+    rbac:
+      pspEnabled: false
+
+    resources:
+      limits:
+        memory: 219M
+      requests:
+        cpu: 23m
+        memory: 127M
+
     serviceMonitor:
       enabled: true
-    ingress:
-      enabled: true
-      ingressClassName: "nginx"
-      annotations:
-        external-dns.home.arpa/enabled: "true"
-      hosts:
-        - &host "grafana.${SECRET_DOMAIN}"
-      tls:
-        - hosts:
-            - *host
-    persistence:
-      enabled: false
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values: ["grafana"]
-              topologyKey: kubernetes.io/hostname
+
+    sidecar:
+      dashboards:
+        enabled: true
+        labelValue: ""
+        searchNamespace: ALL
+      datasources:
+        enabled: true
+        labelValue: ""
+        searchNamespace: ALL
+      logLevel: INFO
