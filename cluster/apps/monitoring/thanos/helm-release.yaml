@@ -42,6 +42,8 @@ spec:
         extraTls:
           - hosts:
               - *host
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
     queryFrontend:
       enabled: false
     bucketweb:
@@ -56,5 +58,3 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
