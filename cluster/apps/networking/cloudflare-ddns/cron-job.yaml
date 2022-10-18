@@ -14,6 +14,8 @@ spec:
       backoffLimit: 3
       ttlSecondsAfterFinished: 300
       template:
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
         spec:
           restartPolicy: Never
           containers:
@@ -40,5 +42,3 @@ spec:
                       items:
                         - key: cloudflare-ddns.sh
                           path: cloudflare-ddns.sh
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
