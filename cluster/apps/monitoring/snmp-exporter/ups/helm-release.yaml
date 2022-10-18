@@ -41,9 +41,11 @@ spec:
         - name: ups01
           module:
             - cyberpowerups
-          target: ups01
+          target: "ups01.${SECRET_DOMAIN}"
       path: /snmp
       scrapeTimeout: 10s
       relabelings:
         - sourceLabels: [__param_target]
           targetLabel: instance
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"

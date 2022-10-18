@@ -41,13 +41,15 @@ spec:
         - name: pdu01
           module:
             - cyberpower
-          target: pdu01
+          target: "pdu01.${SECRET_DOMAIN}"
         - name: pdu02
           module:
             - cyberpower
-          target: pdu02
+          target: "pdu02.${SECRET_DOMAIN}"
       path: /snmp
       scrapeTimeout: 10s
       relabelings:
         - sourceLabels: [__param_target]
           targetLabel: instance
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
