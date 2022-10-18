@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   # - grafana
   - kube-prometheus-stack
-  # - omada-exporter
+  - omada-exporter
   - snmp-exporter
   - thanos

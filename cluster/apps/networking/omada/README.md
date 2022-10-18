@@ -26,4 +26,7 @@
           Host: "omada.domain.com"
     ```
 
-- **Device Discovery** requires manually configuring DHCP Option 138: <https://www.tp-link.com/us/support/faq/2764/>
+- **Device Discovery**
+
+  - Requires manually configuring DHCP Option 138: <https://www.tp-link.com/us/support/faq/2764/>
+  - Metallb does not support broadcasts for UDP, setting the pod to use the host network instead will allow discovery of devices.
