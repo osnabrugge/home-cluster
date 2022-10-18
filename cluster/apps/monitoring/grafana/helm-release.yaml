@@ -97,6 +97,8 @@ spec:
       ingressClassName: nginx
       annotations:
         auth.home.arpa/enabled: "true"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "chart-bar"
       hosts:
         - &host grafana.${SECRET_DOMAIN}
       tls:
