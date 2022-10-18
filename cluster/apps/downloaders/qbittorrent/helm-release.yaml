@@ -77,7 +77,8 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: qbittorrent-config
+        type: emptyDir
+        mountPath: /config/qBittorrent/config
       cache:
         enabled: true
         type: emptyDir
