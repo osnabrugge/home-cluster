@@ -91,6 +91,8 @@ spec:
 
     imageRenderer:
       enabled: true
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
 
     ingress:
       enabled: true
