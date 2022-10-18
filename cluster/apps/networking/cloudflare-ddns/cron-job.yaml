@@ -14,8 +14,6 @@ spec:
       backoffLimit: 3
       ttlSecondsAfterFinished: 300
       template:
-        nodeSelector:
-          node-role.kubernetes.io/worker: "true"
         spec:
           restartPolicy: Never
           containers:
