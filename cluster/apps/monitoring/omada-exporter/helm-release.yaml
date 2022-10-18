@@ -25,7 +25,7 @@ spec:
       TZ: ${TIMEZONE}
 
     omada:
-      host: "https://${SVC_OMADA_ADDRESS}:8043"
+      host: "https://${SVC_OMADA_ADDRESS}"
       insecure: true
 
     resources:
