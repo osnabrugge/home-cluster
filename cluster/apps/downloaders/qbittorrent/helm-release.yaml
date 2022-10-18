@@ -77,21 +77,12 @@ spec:
     persistence:
       config:
         enabled: true
-        type: emptyDir
-        mountPath: /config/qBittorrent/config
-      cache:
-        enabled: true
-        type: emptyDir
-        mountPath: /config/qBittorrent/cache
+        existingClaim: qbittorrent-config
       configfiles:
         enabled: true
         type: configMap
         name: qbittorrent-config
         mountPath: "-"
-      data:
-        enabled: true
-        existingClaim: qbittorrent-config
-        mountPath: /config/qBittorrent/data
       media:
         enabled: true
         mountPath: /data/nas
