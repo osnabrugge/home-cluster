@@ -213,8 +213,8 @@ spec:
               resources:
                 requests:
                   storage: 50Gi
-      nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
         resources:
           requests:
             cpu: 10m
