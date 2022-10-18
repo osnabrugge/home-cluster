@@ -9,3 +9,4 @@ resources:
   - networking
   - monitoring
   # - media-automation
+  - web-tools
