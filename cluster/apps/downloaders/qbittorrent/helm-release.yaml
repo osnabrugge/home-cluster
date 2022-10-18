@@ -84,7 +84,7 @@ spec:
       media:
         enabled: true
         mountPath: /data/nas
-        path: /volume2/share
+        path: /volume1/share
         server: 192.168.88.11
         type: nfs
     nodeSelector:
