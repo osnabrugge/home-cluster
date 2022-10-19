@@ -5,7 +5,7 @@ namespace: flux-system
 resources:
   # - notifications
   - webhook
-  # - prometheus.yaml
+  - prometheus.yaml
 configMapGenerator:
   - name: flux-cluster-dashboard
     files:

@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: networking
 resources:
   - dashboard
+  - certificate.yaml
   - helm-release.yaml
 configMapGenerator:
   - name: cloudflare-proxied-networks
