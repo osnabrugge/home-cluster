@@ -8,3 +8,4 @@ resources:
   # - omada-exporter
   - snmp-exporter
   - thanos
+  - vpa
