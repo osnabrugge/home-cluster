@@ -31,9 +31,12 @@ spec:
       namespaceSelector:
         any: true
       customApps:
-        - name: Test
-          url: https://example.com
-          icon: test-tube
+        - name: NAS
+          url: https://nas01.${SECRET_DOMAIN}
+          icon: nas
+        - name: Router
+          url: https://router01.${SECRET_DOMAIN}
+          icon: router
       groups:
         - name: Communicate
           links:
