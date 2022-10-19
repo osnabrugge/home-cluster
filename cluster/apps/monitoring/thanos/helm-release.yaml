@@ -55,28 +55,7 @@ spec:
       enabled: false
 
     ruler:
-      enabled: true
-      alertmanagers:
-        - http://kube-prometheus-stack-alertmanager.monitoring:9093
-      clusterName: ${CLUSTER_NAME}
-      config: |-
-        groups:
-          - name: "PrometheusWatcher"
-            rules:
-              - alert: "PrometheusDown"
-                expr: absent(up{job="kube-prometheus-stack-prometheus"})
-      dnsDiscovery:
-        enabled: true
-      persistence:
-        enabled: true
-        storageClass: "ceph-block"
-        size: 512Mi
-      resources:
-        requests:
-          cpu: 23m
-          memory: 94M
-        limits:
-          memory: 113M
+      enabled: false
 
     metrics:
       enabled: true
