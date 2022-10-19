@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - staging
-  # - production
+  - production
