@@ -28,7 +28,11 @@ spec:
       namespaceSelector:
         matchNames:
           - default
+          - downloaders
+          - media-automation
+          - monitoring
           - networking
+          - web-tools
       name: "you"
       customApps:
         - name: Some External Cluster Service
