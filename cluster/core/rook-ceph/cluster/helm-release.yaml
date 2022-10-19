@@ -37,7 +37,7 @@ spec:
         tls:
           - hosts:
               - *host
-          - secretName: "${SECRET_DOMAIN/./-}-tls"
+          - secretName: "${CLUSTER_CERT_SECRET}"
     configOverride: |
       [global]
       bdev_enable_discard = true

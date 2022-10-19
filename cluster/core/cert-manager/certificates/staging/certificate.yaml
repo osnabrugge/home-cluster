@@ -1,0 +1,21 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "wildcard-default-staging-cert"
+  namespace: networking
+spec:
+  privateKey:
+    rotationPolicy: Always
+  commonName: "*.${PUBLIC_DOMAIN}"
+  dnsNames:
+    - "${SECRET_DOMAIN}"
+    - "*.${SECRET_DOMAIN}"
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  secretName: "wildcard-default-staging-cert-tls"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"

@@ -43,7 +43,7 @@ spec:
         extraTls:
           - hosts:
               - *host
-          - secretName: "${SECRET_DOMAIN/./-}-tls"
+          - secretName: "${CLUSTER_CERT_SECRET}"
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
     queryFrontend:

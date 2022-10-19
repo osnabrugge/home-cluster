@@ -53,7 +53,7 @@ spec:
         tls:
           - hosts:
               - *host
-          - secretName: "${SECRET_DOMAIN/./-}-tls"
+          - secretName: "${CLUSTER_CERT_SECRET}"
     initContainers:
       init-permission:
         image: busybox:1.35.0

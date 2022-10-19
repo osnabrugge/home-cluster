@@ -91,6 +91,7 @@ spec:
         tls:
           - hosts:
               - *host
+          - secretName: "${CLUSTER_CERT_SECRET}"
       alertmanagerSpec:
         replicas: 3
         podAntiAffinity: hard
@@ -172,6 +173,7 @@ spec:
         tls:
           - hosts:
               - *host
+          - secretName: "${CLUSTER_CERT_SECRET}"
       thanosService:
         enabled: true
       thanosServiceMonitor:
@@ -188,6 +190,7 @@ spec:
         tls:
           - hosts:
               - *host
+          - secretName: "${CLUSTER_CERT_SECRET}"
       prometheusSpec:
         replicas: 3
         replicaExternalLabelName: __replica__
