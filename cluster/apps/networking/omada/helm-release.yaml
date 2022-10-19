@@ -42,7 +42,6 @@ spec:
         ingressClassName: "nginx"
         annotations:
           #coredns.io/hostname: &host "omada.${SECRET_DOMAIN}"
-          cert-manager.io/cluster-issuer: "${CLUSTER_CERT}"
           hajimari.io/enable: "true"
           hajimari.io/icon: "router-wireless-settings"
           # TODO: #331 configure nginx redirect rules and headers
@@ -70,7 +69,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: "${SECRET_DOMAIN/./-}-tls"
+          - secretName: "${SECRET_DOMAIN/./-}-tls"
     service:
       main:
         enabled: true

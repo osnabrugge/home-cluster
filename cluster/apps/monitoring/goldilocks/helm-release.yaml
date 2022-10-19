@@ -47,6 +47,7 @@ spec:
         tls:
           - hosts:
               - *host
+          - secretName: "${SECRET_DOMAIN/./-}-tls"
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
       resources:

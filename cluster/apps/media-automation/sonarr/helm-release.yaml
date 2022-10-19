@@ -46,10 +46,10 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
+          # external-dns.home.arpa/enabled: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "television-box"
           nginx.ingress.kubernetes.io/configuration-snippet: |
-            cert-manager.io/cluster-issuer: "${CLUSTER_CERT}"
-            hajimari.io/enable: "true"
-            hajimari.io/icon: "television-box"
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/nord.css"></head>';
             sub_filter_once on;
@@ -61,6 +61,7 @@ spec:
         tls:
           - hosts:
               - *host
+          - secretName: "${SECRET_DOMAIN/./-}-tls"
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568

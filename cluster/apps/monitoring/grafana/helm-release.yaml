@@ -98,7 +98,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        cert-manager.io/cluster-issuer: "${CLUSTER_CERT}"
+          # external-dns.home.arpa/enabled: "true"
         hajimari.io/enable: "true"
         hajimari.io/icon: "chart-bar"
       hosts:
@@ -106,7 +106,7 @@ spec:
       tls:
         - hosts:
             - *host
-          secretName: "${SECRET_DOMAIN/./-}-tls"
+        - secretName: "${SECRET_DOMAIN/./-}-tls"
 
     persistence:
       enabled: false
