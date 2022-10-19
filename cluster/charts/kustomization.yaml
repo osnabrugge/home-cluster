@@ -6,6 +6,7 @@ resources:
   - bjw-s-charts.yaml
   - charlie-haley-charts.yaml
   - cloudnative-pg-charts.yaml
+  - emberstack-charts.yaml
   - external-dns-charts.yaml
   - fairwinds-charts.yaml
   - grafana-charts.yaml
