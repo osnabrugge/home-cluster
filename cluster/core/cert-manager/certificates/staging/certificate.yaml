@@ -7,7 +7,7 @@ metadata:
 spec:
   privateKey:
     rotationPolicy: Always
-  commonName: "*.${PUBLIC_DOMAIN}"
+  commonName: "${PUBLIC_DOMAIN}"
   dnsNames:
     - "${SECRET_DOMAIN}"
     - "*.${SECRET_DOMAIN}"
