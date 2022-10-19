@@ -3,11 +3,11 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: "wildcard-default-cert"
-  namespace: networking
+  namespace: cert-manager
 spec:
   privateKey:
     rotationPolicy: Always
-  commonName: "${PUBLIC_DOMAIN}"
+  commonName: "*.${SECRET_DOMAIN}"
   dnsNames:
     - "${SECRET_DOMAIN}"
     - "*.${SECRET_DOMAIN}"
