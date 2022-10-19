@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: snmp-exporter-pdu
+  name: snmp-exporter-cyberpower-pdu
   namespace: monitoring
 data:
   snmp.yaml: |
-    pdu:
+    cyberpower:
       retries: 5
       timeout: 60s
       walk:
