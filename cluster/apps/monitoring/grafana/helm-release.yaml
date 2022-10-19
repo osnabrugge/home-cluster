@@ -106,7 +106,7 @@ spec:
       tls:
         - hosts:
             - *host
-        - secretName: "${CLUSTER_CERT}"
+        - secretName: "${CLUSTER_CERT_SECRET}"
 
     persistence:
       enabled: false
