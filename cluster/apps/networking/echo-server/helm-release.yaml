@@ -53,8 +53,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          # cert-manager.io/cluster-issuer: "${CLUSTER_CERT}"
-          # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns.home.arpa/enabled: "true"
           # external-dns/is-public: "true"
           hajimari.io/enable: "true"
@@ -68,7 +67,6 @@ spec:
           - hosts:
               - *host
           - secretName: "${CLUSTER_CERT_SECRET}"
-            # secretName: "echo-server-tls"
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:
