@@ -6,9 +6,9 @@ metadata:
   namespace: flux-system
 data:
   TIMEZONE: America/Toronto
-  CLUSTER_ISSUER: "letsencrypt-staging"
-  CLUSTER_CERT: "wildcard-default-staging-cert"
-  CLUSTER_CERT_SECRET: "wildcard-default-staging-cert-tls"
+  CLUSTER_ISSUER: "letsencrypt-production"
+  CLUSTER_CERT: "wildcard-default-cert"
+  CLUSTER_CERT_SECRET: "wildcard-default-cert-tls"
   METALLB_LB_RANGE: 192.168.10.70-192.168.10.79
   SVC_NGINX_ADDR: 192.168.10.70
   SVC_K8S_GATEWAY_ADDR: 192.168.10.71
