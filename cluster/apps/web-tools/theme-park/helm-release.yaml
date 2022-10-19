@@ -48,13 +48,6 @@ spec:
           - hosts:
               - *host
           - secretName: "${CLUSTER_CERT_SECRET}"
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:
