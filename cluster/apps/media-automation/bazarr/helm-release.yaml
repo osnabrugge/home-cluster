@@ -80,8 +80,10 @@ spec:
         mountPath: /config
       media:
         enabled: true
-        existingClaim: shared-media
-        mountPath: /media
+        mountPath: /data/nas
+        path: /volume1/share
+        server: 192.168.88.11
+        type: nfs
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:

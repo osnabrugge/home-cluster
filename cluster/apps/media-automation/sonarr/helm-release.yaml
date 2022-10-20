@@ -75,10 +75,10 @@ spec:
         existingClaim: sonarr-config
       media:
         enabled: true
+        mountPath: /data/nas
+        path: /volume1/share
+        server: 192.168.88.11
         type: nfs
-        server: "expanse.${SECRET_DOMAIN}"
-        path: /eros/Media
-        mountPath: /media
       scripts:
         enabled: true
         type: configMap

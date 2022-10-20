@@ -61,7 +61,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: *app
+        existingClaim: tautulli-config
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:

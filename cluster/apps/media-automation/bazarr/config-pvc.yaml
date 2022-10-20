@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: &name bazarr
+  name: bazarr-config
   namespace: media-automation
   labels:
     app.kubernetes.io/name: *name

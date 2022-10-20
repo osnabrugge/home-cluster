@@ -63,7 +63,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: *app
+        existingClaim: overseerr-config
         mountPath: /app/config
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
