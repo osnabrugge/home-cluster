@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/radarr
-      tag: 4.2.4.6635
+      tag: 4.2.4.6635@sha256:bc44a27fa5789024136f771e4adabfe8d7b5ab7a061882e22d3664a0b7f48673
     env:
       TZ: "${TIMEZONE}"
       PUSHOVER_DEBUG: "false"
@@ -54,7 +54,7 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/radarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: *host
+          - host: &host "radarr.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
