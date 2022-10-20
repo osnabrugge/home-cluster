@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/sonarr
-      tag: 3.0.9.1549
+      tag: 3.0.9.1549@sha256:6f11e1a769216c576d6073a5288d81f10e08ddd79baf59656f21dbb2fd896e72
     env:
       TZ: "${TIMEZONE}"
       PUSHOVER_DEBUG: "false"
@@ -54,7 +54,7 @@ spec:
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: *host
+          - host: &host "sonarr.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
