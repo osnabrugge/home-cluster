@@ -75,6 +75,8 @@ spec:
         path: /volume1/backup/home-cluster/kopia
         mountPath: /backups
 
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 10m
