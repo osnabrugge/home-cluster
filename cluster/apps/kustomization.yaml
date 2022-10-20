@@ -8,6 +8,6 @@ resources:
   - kube-system
   - networking
   - monitoring
-  # - media-automation
+  - media-automation
   - system-upgrade
   - web-tools
