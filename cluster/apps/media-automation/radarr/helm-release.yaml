@@ -77,7 +77,7 @@ spec:
         enabled: true
         mountPath: /data/nas
         path: /volume1/share
-        server: 192.168.88.11
+        server: "${NAS_ADDRESS}"
         type: nfs
       scripts:
         enabled: true
