@@ -26,8 +26,8 @@ spec:
     global:
       nameOverride: *app
     image:
-      repository: ghcr.io/k8s-at-home/bazarr
-      tag: 1.1.2@sha256:c7befc7e73f5d7adc392845680b7f1186412b5f9292d7edf026e346a91b09231
+      repository: ghcr.io/onedr0p/bazarr
+      tag: 1.1.2@sha256:0271747489399a8ac1a343c5753b1843ba4446faf39841977268a4bf1867965f
     service:
       main:
         ports:

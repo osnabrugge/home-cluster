@@ -23,8 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/prowlarr
-      tag: 0.4.0.1802@sha256:6a49e194e0e3d2c9604ac8eecfddc00ff059d33909a3bc91bb6dbf2174f33686
+      repository: ghcr.io/onedr0p/prowlarr-nightly
+      tag: 0.4.7.2016@sha256:c745a0711067d707b50ec13deec094104c892d96ddcb75cf8cedb3431ff8cbf7
     env:
       TZ: "${TIMEZONE}"
       PROWLARR__INSTANCE_NAME: Prowlarr
