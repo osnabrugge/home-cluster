@@ -8,5 +8,5 @@ resources:
   - prowlarr
   - radarr
   - recyclarr
-  # - sonarr
+  - sonarr
   - tautulli
