@@ -23,8 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/sonarr
-      tag: 3.0.9.1549@sha256:6f11e1a769216c576d6073a5288d81f10e08ddd79baf59656f21dbb2fd896e72
+      repository: ghcr.io/onedr0p/sonarr
+      tag: 3.0.9.1549@sha256:8ab89f00d777645aea8e2dc3ef72c7d4f0b4625559515b420875854fe7c80410
     env:
       TZ: "${TIMEZONE}"
       PUSHOVER_DEBUG: "false"
