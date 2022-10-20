@@ -15,7 +15,7 @@ spec:
           restartPolicy: OnFailure
           initContainers:
             - name: render-configs
-              image: ghcr.io/onedr0p/recyclarr:2.6.0
+              image: ghcr.io/onedr0p/recyclarr:2.6.1
               envFrom:
                 - secretRef:
                     name: *app
@@ -31,7 +31,7 @@ spec:
                   mountPath: /shared
           containers:
             - name: sonarrs
-              image: ghcr.io/onedr0p/recyclarr:2.6.0
+              image: ghcr.io/onedr0p/recyclarr:2.6.1
               env:
                 - name: TZ
                   value: "${TIMEZONE}"
@@ -47,7 +47,7 @@ spec:
                   subPath: recyclarr.yaml
                   readOnly: true
             - name: radarrs
-              image: ghcr.io/onedr0p/recyclarr:2.6.0
+              image: ghcr.io/onedr0p/recyclarr:2.6.1
               env:
                 - name: TZ
                   value: "${TIMEZONE}"
