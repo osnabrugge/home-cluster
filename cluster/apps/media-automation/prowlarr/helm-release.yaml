@@ -23,8 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/sct/overseerr
-      tag: 1.30.0
+      repository: ghcr.io/sct/prowlarr
+      tag: 1.30.1@sha256:ffd92dd2be0f0dee02e635f6e8e4f9717ec6c07454708155aab49c7112ef105b
     env:
       TZ: "${TIMEZONE}"
       PROWLARR__INSTANCE_NAME: Prowlarr
@@ -58,7 +58,7 @@ spec:
         tls:
           - hosts:
               - *host
-          - secretName: "${CLUSTER_CERT_SECRET}"
+          - secretName: "${CLUSTER_CERT}"
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
