@@ -1,0 +1,82 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kopia
+  namespace: storage
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 0.2.2
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    image:
+      repository: ghcr.io/onedr0p/kopia
+      tag: 0.12.1@sha256:e333295b519ce586e7c050c970b2255d87bdb2979298ff87ebdb1113e381ba3b
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: kopia-config
+
+    command: kopia
+    args:
+      - server
+      - --insecure
+      - --address
+      - 0.0.0.0:80
+      - --metrics-listen-addr
+      - 0.0.0.0:8080
+      - --without-password
+
+    env:
+      KOPIA_PASSWORD: "none"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+          metrics:
+            enabled: true
+            port: 8080
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: &host "kopia.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      config:
+        enabled: true
+        type: "configMap"
+        name: "kopia-config"
+        mountPath: /config/repository.config
+        subPath: repository.config
+        readOnly: true
+
+      backup:
+        enabled: true
+        type: nfs
+        server: "${NAS_ADDRESS}"
+        path: /volume1/backup/home-cluster/kopia
+        mountPath: /backups
+
+    resources:
+      requests:
+        cpu: 10m
+        memory: 250Mi
+      limits:
+        memory: 500Mi

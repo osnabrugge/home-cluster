@@ -9,6 +9,7 @@ data:
   CLUSTER_ISSUER: "letsencrypt-production"
   CLUSTER_CERT: "wildcard-default-cert"
   CLUSTER_CERT_SECRET: "wildcard-default-cert-tls"
+  NAS_ADDRESS: 192.168.88.11
   METALLB_LB_RANGE: 192.168.10.70-192.168.10.79
   SVC_NGINX_ADDR: 192.168.10.70
   SVC_K8S_GATEWAY_ADDR: 192.168.10.71
