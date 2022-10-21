@@ -11,9 +11,9 @@ spec:
       "master": "ens19",
       "mode": "bridge",
       "ipam": {
-        "type": "host-local",
-        "subnet": "192.168.88.0/24",
-        "rangeStart": "192.168.88.100",
-        "rangeEnd": "192.168.88.200"
+        "type": "whereabouts",
+        "range": "192.168.89.0/24",
+        "range_start": "192.168.89.100",
+        "range_end": "192.168.89.200"
       }
     }'
