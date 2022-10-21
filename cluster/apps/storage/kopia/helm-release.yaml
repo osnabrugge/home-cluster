@@ -34,8 +34,8 @@ spec:
                 sleep 1
             done
         volumeMounts:
-          - name: backups
-            mountPath: /backup
+          - name: backup
+            mountPath: /data/backups
     image:
       repository: ghcr.io/onedr0p/kopia
       tag: 0.12.1@sha256:e333295b519ce586e7c050c970b2255d87bdb2979298ff87ebdb1113e381ba3b
