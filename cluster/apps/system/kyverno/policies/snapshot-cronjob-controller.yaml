@@ -95,9 +95,9 @@ spec:
                         image: ghcr.io/onedr0p/kopia:0.12.1@sha256:e333295b519ce586e7c050c970b2255d87bdb2979298ff87ebdb1113e381ba3b
                         env:
                           - name: KOPIA_CACHE_DIRECTORY
-                            value: /snapshots/{{ namespace }}/{{ appName }}/{{ claimName }}/cache
+                            value: /data/backups/{{ namespace }}/{{ appName }}/{{ claimName }}/cache
                           - name: KOPIA_LOG_DIR
-                            value: /snapshots/{{ namespace }}/{{ appName }}/{{ claimName }}/logs
+                            value: /data/backups/{{ namespace }}/{{ appName }}/{{ claimName }}/logs
                           - name: KOPIA_PASSWORD
                             value: "none"
                         command:
@@ -115,17 +115,17 @@ spec:
                             printf "\e[1;32m%-6s\e[m\n" "[09/10] Show maintenance info ..."    && kopia maintenance info
                             printf "\e[1;32m%-6s\e[m\n" "[10/10] Disconnect from repo ..."     && kopia repo disconnect
                         volumeMounts:
-                          - name: data
+                          - name: appdata
                             mountPath: "/data/{{ namespace }}/{{ appName }}/{{ claimName }}"
-                          - name: snapshots
-                            mountPath: /snapshots
+                          - name: backup
+                            mountPath: /data/backups
                         securityContext:
                           privileged: true
                     volumes:
-                      - name: data
+                      - name: appdata
                         persistentVolumeClaim:
                           claimName: "{{ claimName }}"
-                      - name: snapshots
+                      - name: backup
                         nfs:
                           server: "${NAS_ADDRESS}"
                           path: "/volume1/backup/home-cluster/kopia"
