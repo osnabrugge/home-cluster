@@ -10,5 +10,5 @@ resources:
   - monitoring
   - media-automation
   - storage
-  - system-upgrade
+  - system
   - web-tools
