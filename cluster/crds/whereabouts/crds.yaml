@@ -12,10 +12,10 @@ spec:
   ignore: |
     # exclude all
     /*
-    # include crd directory
-    !/doc/crds
-    # exclude ip-reconciler-job
-    # /doc/crds/ip-reconciler-job.yaml
+    # include crd ippools and overlappingrangeipreservations
+    !/doc/crds/whereabouts.cni.cncf.io_ippools.yaml
+    !/doc/crds/whereabouts.cni.cncf.io_overlappingrangeipreservations.yaml
+
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
