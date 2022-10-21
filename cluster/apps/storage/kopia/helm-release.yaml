@@ -76,8 +76,8 @@ spec:
     persistence:
       config:
         enabled: true
-        type: configMap
-        name: *app
+        type: "configMap"
+        name: "kopia-config"
         subPath: repository.config
         mountPath: /config/repository.config
         readOnly: true
