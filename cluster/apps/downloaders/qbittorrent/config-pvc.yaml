@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: qbittorrent-config
   namespace: downloaders
+  labels:
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: omada-logs-pvc
   namespace: networking
+  labels:
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce
