@@ -44,9 +44,10 @@ spec:
       bdev_async_discard = true
     cephClusterSpec:
       network:
-        provider: multus
-        selectors:
-          cluster: default/macvlan-conf
+        provider: host
+        # provider: multus
+        # selectors:
+        #   cluster: default/macvlan-conf
       crashCollector:
         disable: false
       dashboard:
@@ -74,11 +75,8 @@ spec:
           - name: kube08
             devices:
               - name: "sdb"
-    # cephBlockPoolsVolumeSnapshotClass:
-    #   enabled: true
-    #   name: csi-rbdplugin-snapclass
-    #   annotations:
-    #     velero.io/csi-volumesnapshot-class: "true"
+      cephBlockPoolsVolumeSnapshotClass:
+      enabled: false
     cephBlockPools:
       - name: ceph-blockpool
         spec:
