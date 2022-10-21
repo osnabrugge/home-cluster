@@ -5,6 +5,8 @@ metadata:
   name: qbittorrent-config
   namespace: downloaders
   labels:
+    app.kubernetes.io/name: &name qbittorrent
+    app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:

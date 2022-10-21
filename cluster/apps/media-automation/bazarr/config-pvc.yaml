@@ -5,6 +5,8 @@ metadata:
   name: bazarr-config
   namespace: media-automation
   labels:
+    app.kubernetes.io/name: &name bazarr
+    app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:

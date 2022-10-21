@@ -5,6 +5,8 @@ metadata:
   name: radarr-config
   namespace: media-automation
   labels:
+    app.kubernetes.io/name: &name radarr
+    app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:

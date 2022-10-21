@@ -5,6 +5,8 @@ metadata:
   name: hajimari-config
   namespace: web-tools
   labels:
+    app.kubernetes.io/name: &name hajimari
+    app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
