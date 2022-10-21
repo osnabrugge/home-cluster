@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kyverno
+  namespace: kube-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: kyverno-charts
+      version: 2.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+        namespace: flux-system
+      interval: 30m
+  values:
+    replicaCount: 3
+
+    updateStrategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+
+    resources:
+      requests:
+        cpu: 247m
+        memory: 443M
+      limits:
+        memory: 1336M
+
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
