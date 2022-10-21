@@ -129,7 +129,7 @@ spec:
                         nfs:
                           server: "${NAS_ADDRESS}"
                           path: "/volume1/backup/home-cluster/kopia"
-                    podAnnotations:
+                    annotations:
                       k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
                     nodeSelector:
                       node-role.kubernetes.io/worker: "true"
