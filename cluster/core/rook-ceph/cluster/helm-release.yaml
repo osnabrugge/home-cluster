@@ -44,10 +44,10 @@ spec:
       bdev_async_discard = true
     cephClusterSpec:
       network:
-        provider: host
-        # provider: multus
-        # selectors:
-        #   cluster: default/macvlan-conf
+        # provider: host
+        provider: multus
+        selectors:
+          cluster: networking/macvlan-conf
       crashCollector:
         disable: false
       dashboard:
