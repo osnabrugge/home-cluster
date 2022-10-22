@@ -12,7 +12,7 @@ spec:
       version: 0.7.1
       sourceRef:
         kind: HelmRepository
-        name: charliehaley-charts
+        name: charlie-haley-charts
         namespace: flux-system
       interval: 10m
   values:
