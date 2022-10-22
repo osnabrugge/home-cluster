@@ -5,3 +5,4 @@ resources:
   - inject-tz.yaml
   - remove-cpu-limit.yaml
   - snapshot-cronjob-controller.yaml
+  - sync-postgres-secrets.yaml

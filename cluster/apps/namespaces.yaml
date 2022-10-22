@@ -54,6 +54,7 @@ metadata:
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
+    secret.home.arpa/postgres-superuser: "true"
 ---
 apiVersion: v1
 kind: Namespace
@@ -78,6 +79,7 @@ metadata:
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
+    secret.home.arpa/postgres-superuser: "true"
 ---
 apiVersion: v1
 kind: Namespace
@@ -86,6 +88,7 @@ metadata:
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
+    secret.home.arpa/postgres-superuser: "true"
 ---
 apiVersion: v1
 kind: Namespace
