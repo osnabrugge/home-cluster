@@ -77,13 +77,13 @@ spec:
             successfulJobsHistoryLimit: 1
             failedJobsHistoryLimit: 2
             jobTemplate:
-            metadata:
-              annotations:
-                k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
               spec:
                 # Keep at least one job in completed state in accordance to the schedule
                 ttlSecondsAfterFinished: 86400
                 template:
+                  metadata:
+                    annotations:
+                      k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
                   spec:
                     automountServiceAccountToken: false
                     restartPolicy: OnFailure
