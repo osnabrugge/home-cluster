@@ -9,4 +9,4 @@ resources:
   - radarr
   # - recyclarr
   - sonarr
-  - tautulli
+  # - tautulli
