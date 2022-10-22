@@ -30,3 +30,5 @@ spec:
     image:
       repository: ghcr.io/cloudnative-pg/cloudnative-pg-testing
       tag: main
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
