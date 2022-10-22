@@ -5,43 +5,27 @@ metadata:
   name: omada-exporter
   namespace: monitoring
 spec:
-  interval: 5m
-  releaseName: omada-exporter
+  interval: 10m
   chart:
     spec:
       chart: omada-exporter
       version: 0.7.1
       sourceRef:
         kind: HelmRepository
-        name: charlie-haley-charts
+        name: charliehaley-charts
         namespace: flux-system
-      interval: 5m
+      interval: 10m
   values:
     image:
-      repository: chhaley/omada_exporter
-      tag: "0.7.0"
-
+      repository: ghcr.io/charlie-haley/omada_exporter
+      pullPolicy: IfNotPresent
+      tag: 0.7.0
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
     omada:
-      host: "https://omada-controller.networking.svc.cluster.local"
+      host: ${SECRET_OMADA_HOST}
+      username: ${SECRET_OMADA_USERNAME}
+      password: ${SECRET_OMADA_PASSWORD}
+      request_timeout: 60
+      site: Toronto
       insecure: true
-
-    resources:
-      requests:
-        memory: 500Mi
-        cpu: 35m
-      limits:
-        memory: 750Mi
-
-  valuesFrom:
-    - kind: Secret
-      name: omada-exporter-secrets
-      valuesKey: site
-      targetPath: config.value.omada.site
-    - kind: Secret
-      name: omada-exporter-secrets
-      valuesKey: username
-      targetPath: config.value.omada.username
-    - kind: Secret
-      name: omada-exporter-secrets
-      valuesKey: password
-      targetPath: config.value.omada.password
