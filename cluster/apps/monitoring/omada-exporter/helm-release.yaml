@@ -22,7 +22,7 @@ spec:
       tag: "0.7.0"
 
     omada:
-      host: "https://omada-controller.networking.svc.cluster.local}"
+      host: "https://omada-controller.networking.svc.cluster.local"
       insecure: true
 
     resources:
