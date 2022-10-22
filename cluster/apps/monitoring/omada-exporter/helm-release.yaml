@@ -21,11 +21,8 @@ spec:
       repository: chhaley/omada_exporter
       tag: "0.7.0"
 
-    env:
-      TZ: ${TIMEZONE}
-
     omada:
-      host: "https://${SVC_OMADA_ADDR}"
+      host: "https://omada-controller.networking.svc.cluster.local}"
       insecure: true
 
     resources:
