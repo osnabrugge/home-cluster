@@ -9,5 +9,5 @@ resources:
   - ingress-nginx
   - k8s-gateway
   - metallb
-  - omada
+  # - omada
   # - uptimerobot-heartbeat

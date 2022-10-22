@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - goldilocks
   - grafana
-  - kube-prometheus-stack
+  # - kube-prometheus-stack
   # - omada-exporter
   - snmp-exporter
   - thanos
