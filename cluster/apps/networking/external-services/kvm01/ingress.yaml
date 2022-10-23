@@ -52,8 +52,6 @@ metadata:
     app.kubernetes.io/instance: *app
 spec:
   ingressClassName: nginx
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   rules:
     - host: &host "kvm01.${SECRET_DOMAIN}"
       http:
