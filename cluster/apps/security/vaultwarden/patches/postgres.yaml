@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: authelia
+  name: vaultwarden
   namespace: security
 spec:
   values:
@@ -11,9 +11,9 @@ spec:
         image: ghcr.io/onedr0p/postgres-initdb:14.5
         env:
           - name: POSTGRES_HOST
-            value: postgres-rw.database.svc.cluster.local
+            value: postgres-rw.databases.svc.cluster.local
           - name: POSTGRES_DB
-            value: authelia
+            value: vwaultwarden
           - name: POSTGRES_SUPER_PASS
             valueFrom:
               secretKeyRef:
@@ -22,10 +22,10 @@ spec:
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                name: authelia
-                key: AUTHELIA_STORAGE_POSTGRES_USERNAME
+                name: vaaultwarden
+                key: VAULTWARDENE_POSTGRES_USERNAME
           - name: POSTGRES_PASS
             valueFrom:
               secretKeyRef:
-                name: authelia
-                key: AUTHELIA_STORAGE_POSTGRES_PASSWORD
+                name: vaultwarden
+                key: VAULTWARDEN_POSTGRES_PASSWORD
