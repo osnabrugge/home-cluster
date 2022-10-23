@@ -25,7 +25,7 @@ spec:
     - name: postgres
       namespace: databases
     - name: glauth
-      namespace: databases
+      namespace: security
     - name: redis
       namespace: databases
   values:
