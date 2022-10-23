@@ -13,36 +13,14 @@ spec:
     - host: &host "nas01.${SECRET_DOMAIN}"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: *app
-                port:
-                  number: 5001
+          - backend:
+              serviceName: *app
+              servicePort: 5001
+          - backend:
+              serviceName: *app
+              servicePort: 80
+
   tls:
     - hosts:
         - *host
     - secretName: "${CLUSTER_CERT_SECRET}"
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: &app nas01-80
-  namespace: networking
-  labels:
-    app.kubernetes.io/name: *app
-    app.kubernetes.io/instance: *app
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: &host "nas01.${SECRET_DOMAIN}"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: *app
-                port:
-                  number: 80
