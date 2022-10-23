@@ -65,8 +65,6 @@ spec:
         enabled: true
         existingClaim: overseerr-config
         mountPath: /app/config
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 10m

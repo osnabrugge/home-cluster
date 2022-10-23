@@ -89,8 +89,6 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/name: *app
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 5m

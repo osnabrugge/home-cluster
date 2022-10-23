@@ -88,8 +88,6 @@ spec:
         path: /volume1/share
         server: "${NAS_ADDRESS}"
         type: nfs
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 10m

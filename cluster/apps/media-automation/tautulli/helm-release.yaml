@@ -62,8 +62,6 @@ spec:
       config:
         enabled: true
         existingClaim: tautulli-config
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 10m

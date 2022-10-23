@@ -158,8 +158,6 @@ spec:
         enabled: true
         mountPath: /opt/tplink/EAPController/logs
         existingClaim: omada-logs-pvc
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 1200m

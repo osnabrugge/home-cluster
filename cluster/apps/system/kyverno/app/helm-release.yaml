@@ -29,6 +29,3 @@ spec:
         memory: 443M
       limits:
         memory: 1336M
-
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"

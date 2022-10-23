@@ -24,5 +24,3 @@ spec:
       retries: 5
   values:
     fullnameOverride: reflector
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
