@@ -23,7 +23,7 @@ metadata:
 subsets:
   - addresses:
     ip: {"192.168.10.30"}
-    ports:
+  - ports:
     name: https
     port: 443
 # ---
