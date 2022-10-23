@@ -1,0 +1,16 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: postfix
+  namespace: web-tools
+spec:
+  privateKey:
+    rotationPolicy: Always
+  commonName: "smtp.${SECRET_DOMAIN}"
+  dnsNames:
+    - "smtp.${SECRET_DOMAIN}"
+  issuerRef:
+    name: "${CLUSTER_ISSUER}"
+    kind: ClusterIssuer
+  secretName: "tls.smtp-relay"

@@ -8,11 +8,11 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: app-template
-      version: 0.2.2
+      chart: mail
+      version: 3.5.1
       sourceRef:
         kind: HelmRepository
-        name: bjw-s-charts
+        name: bokysan-charts
         namespace: flux-system
   install:
     createNamespace: true
@@ -22,61 +22,49 @@ spec:
     remediation:
       retries: 5
   values:
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
-    image:
-      repository: ghcr.io/foxcpp/maddy
-      tag: 0.6.2
-    env:
-      DEBUG: "true"
-      SMTP_DOMAIN: "${SECRET_DOMAIN}"
-      SMTP_SERVER: "smtp.domain.com"
-      SMTP_USERNAME: "sean@${SECRET_DOMAIN}"
-      SMTP_PORT: "465"
-    envFrom:
-      - secretRef:
-          name: *app
-    service:
-      main:
-        type: LoadBalancer
-        externalIPs: ["${SVC_SMTP_RELAY_ADDR}"]
-        externalTrafficPolicy: Local
-        ports:
-          http:
-            port: 2525
-          metrics:
-            enabled: true
-            port: 9749
+    fullnameOverride: smtp-relay
+    config:
+      general:
+        ALLOWED_SENDER_DOMAINS: "${SECRET_DOMAIN}"
+        RELAYHOST: "[${SECRET_SMTP_RELAY}]:${SECRET_SMTP_RELAY_PORT}"
+      postfix:
+        myhostname: &hostname "smtp.${SECRET_DOMAIN}"
+        mynetworks: "${NETWORK_K8S_POD_CIDR},${NETWORK_K8S_SERVICE_CIDR},${NETWORK_K8S_HOST_CIDR}"
+        always_add_missing_headers: yes
+        smtpd_tls_cert_file: /tls/tls.crt
+        smtpd_tls_key_file: /tls/tls.key
+        smtpd_tls_ciphers: medium
+        smtpd_tls_eecdh_grade: strong
+        smtpd_tls_exclude_ciphers: EXPORT,LOW,MD5,aDSS,kECDHe,kDHd,kDHr,SEED,IDEA,RC2,RC4
+        smtpd_tls_loglevel: 1
+        smtpd_tls_mandatory_ciphers: medium
+        smtpd_tls_mandatory_protocols: "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1"
+        smtpd_tls_protocols: "!SSLv2, !SSLv3, !TLSv1, !TLSv1.1"
+        smtpd_tls_security_level: may
+        tls_medium_cipherlist: "AES128+EECDH:AES128+EDH"
     persistence:
-      config:
-        enabled: true
-        type: configMap
-        name: *app
-        subPath: maddy.conf
-        mountPath: /data/maddy.conf
-        readOnly: true
-      data:
-        enabled: true
-        type: emptyDir
-        medium: Memory
-        sizeLimit: 1Gi
-        mountPath: /dev/shm
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: *app
-      secret.reloader.stakater.com/reload: *app
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
+      enabled: true
+      existingClaim: queue-pvc
+    service:
+      type: LoadBalancer
+      externalIPs: ["${SVC_SMTP_RELAY_ADDR}"]
+      externalTrafficPolicy: Local
+    extraVolumes:
+      - name: tls
+        secret:
+          secretName: tls.smtp-relay
+    extraVolumeMounts:
+      - name: tls
+        mountPath: /tls
+    pod:
+      annotations:
+        secret.reloader.stakater.com/reload: *app
+        configmap.reloader.stakater.com/reload: *app
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:
       requests:
-        cpu: 10m
-        memory: 10Mi
+        cpu: 100m
+        memory: 128Mi
       limits:
-        memory: 50Mi
+        memory: 256Mi
