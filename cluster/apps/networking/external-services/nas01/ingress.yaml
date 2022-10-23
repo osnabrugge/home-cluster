@@ -9,8 +9,10 @@ metadata:
     app.kubernetes.io/instance: *app
 spec:
   ingressClassName: nginx
+  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  nginx.ingress.kubernetes.io/upstream-vhost: &host "nas01.${SECRET_DOMAIN}"
   rules:
-    - host: &host "nas01.${SECRET_DOMAIN}"
+    - host: *host
       http:
         paths:
           - path: /
