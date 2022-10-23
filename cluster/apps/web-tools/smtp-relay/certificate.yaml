@@ -9,6 +9,7 @@ spec:
     rotationPolicy: Always
   commonName: "smtp.${SECRET_DOMAIN}"
   dnsNames:
+    - "${SECRET_DOMAIN}"
     - "smtp.${SECRET_DOMAIN}"
   issuerRef:
     name: "${CLUSTER_ISSUER}"
