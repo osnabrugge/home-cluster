@@ -28,16 +28,28 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: &app kvm01
+  name: kvm01
   namespace: networking
   labels:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
 spec:
-  type: ExternalName
+  type: ClusterIP
   externalName: kvm01.${SECRET_PRIVATE_DOMAIN}.
   ports:
-    - name: http
-      port: &port 443
+    - name: https
+      port: 443
       protocol: TCP
-      targetPort: *port
+      targetPort: 5001
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: kvm01
+  namespace: networking
+subsets:
+  - addresses:
+    ip: {192.168.10.11}
+    ports:
+      - name: https
+        port: 5001
