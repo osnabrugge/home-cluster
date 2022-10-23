@@ -11,23 +11,10 @@ spec:
   type: ExternalName
   externalName: nas01.${SECRET_PRIVATE_DOMAIN}.
   ports:
-    - name: http
+    - name: https
       port: &port 5001
       protocol: TCP
       targetPort: *port
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: &app nas01-80
-  namespace: networking
-  labels:
-    app.kubernetes.io/name: *app
-    app.kubernetes.io/instance: *app
-spec:
-  type: ExternalName
-  externalName: nas01.${SECRET_PRIVATE_DOMAIN}.
-  ports:
     - name: http
       port: &port 80
       protocol: TCP
