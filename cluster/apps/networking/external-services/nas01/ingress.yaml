@@ -12,7 +12,7 @@ spec:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   rules:
-    - host: *host
+    - host: &host "nas01.${SECRET_DOMAIN}"
       http:
         paths:
           - path: /
