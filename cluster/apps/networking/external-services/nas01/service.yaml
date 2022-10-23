@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: *app
 spec:
   type: ExternalName
-  externalName: nas01.${SECRET_DOMAIN}.
+  externalName: nas01.${SECRET_PRIVATE_DOMAIN}.
   ports:
     - name: http
       port: &port 443

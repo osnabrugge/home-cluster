@@ -230,21 +230,21 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "router01.${SECRET_DOMAIN}:9153"
+                  - "router01.${SECRET_PRIVATE_DOMAIN}:9153"
           - job_name: frr-exporter
             scrape_interval: 1m
             scrape_timeout: 10s
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "router01.${SECRET_DOMAIN}:9342"
+                  - "router01.${SECRET_PRIVATE_DOMAIN}:9342"
           - job_name: node-exporter
             scrape_interval: 1m
             scrape_timeout: 10s
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "router01.${SECRET_DOMAIN}:9100"
+                  - "router01.${SECRET_PRIVATE_DOMAIN}:9100"
           - job_name: kvm
             scrape_interval: 1m
             scrape_timeout: 10s
@@ -255,4 +255,4 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "kvm01.${SECRET_DOMAIN}"
+                  - "kvm01.${SECRET_PRIVATE_DOMAIN}"

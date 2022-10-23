@@ -32,10 +32,10 @@ spec:
         any: true
       customApps:
         - name: NAS
-          url: https://nas01.${SECRET_DOMAIN}
+          url: https://nas01.${SECRET_PRIVATE_DOMAIN}
           icon: nas
         - name: Router
-          url: https://router01.${SECRET_DOMAIN}
+          url: https://router01.${SECRET_PRIVATE_DOMAIN}
           icon: router
       groups:
         - name: Communicate
