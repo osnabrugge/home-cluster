@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: &host "kvm01.${SECRET_PRIVATE_DOMAIN}"
+    - host: &host "kvm01.${SECRET_DOMAIN}"
       http:
         paths:
           - path: /
