@@ -23,6 +23,7 @@ spec:
   tls:
     - hosts:
         - *host
+    - secretName: "${CLUSTER_CERT_SECRET}"
 ---
 apiVersion: v1
 kind: Service
