@@ -51,7 +51,7 @@ spec:
       externalTrafficPolicy: Local
       ports:
         tcp:
-          post: "${SECRET_SMTP_RELAY_PORT}"
+          port: "${SECRET_SMTP_RELAY_PORT}"
     extraVolumes:
       - name: tls
         secret:
