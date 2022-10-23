@@ -9,8 +9,6 @@ metadata:
     app.kubernetes.io/instance: *app
 spec:
   ingressClassName: nginx
-  annotations:
-    external-dns.home.arpa/enabled: "true"
   rules:
     - host: &host "nas01.${SECRET_PRIVATE_DOMAIN}"
       http:
