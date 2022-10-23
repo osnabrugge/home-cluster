@@ -19,8 +19,24 @@ spec:
               service:
                 name: *app
                 port:
-                  number: 5001
+                  number: 443
   tls:
     - hosts:
         - *host
-    - secretName: "${CLUSTER_CERT_SECRET}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: &app nas01
+  namespace: networking
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
+spec:
+  type: ExternalName
+  externalName: nas01.${SECRET_PRIVATE_DOMAIN}.
+  ports:
+    - name: http
+      port: &port 5001
+      protocol: TCP
+      targetPort: *port
