@@ -2,11 +2,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: &app kvm01
+  name: kvm01
   namespace: networking
   labels:
-    app.kubernetes.io/name: *app
-    app.kubernetes.io/instance: *app
+    app.kubernetes.io/name: kvm01
+    app.kubernetes.io/instance: kmv01
 spec:
   ingressClassName: nginx
   rules:
@@ -31,8 +31,8 @@ metadata:
   name: kvm01
   namespace: networking
   labels:
-    app.kubernetes.io/name: *app
-    app.kubernetes.io/instance: *app
+    app.kubernetes.io/name: kvm01
+    app.kubernetes.io/instance: kvm01
 spec:
   type: ClusterIP
   externalName: kvm01.${SECRET_PRIVATE_DOMAIN}.
