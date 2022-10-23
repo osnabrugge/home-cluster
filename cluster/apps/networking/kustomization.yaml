@@ -10,4 +10,5 @@ resources:
   - k8s-gateway
   - metallb
   - omada
+  - tigera-operator
   # - uptimerobot-heartbeat

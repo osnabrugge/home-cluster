@@ -30,7 +30,7 @@ spec:
         RELAYHOST: "${SECRET_SMTP_RELAY}:${SECRET_SMTP_RELAY_PORT}"
       postfix:
         myhostname: &hostname "smtp.${SECRET_DOMAIN}"
-        mynetworks: "${NETWORK_K8S_POD_CIDR},${NETWORK_K8S_SERVICE_CIDR},${NETWORK_K8S_HOST_CIDR}"
+        mynetworks: "${NET_POD_CIDR},${NET_SVC_CIDR},${NET_HOST_CIDR}"
         always_add_missing_headers: yes
         smtpd_tls_cert_file: /tls/tls.crt
         smtpd_tls_key_file: /tls/tls.key
