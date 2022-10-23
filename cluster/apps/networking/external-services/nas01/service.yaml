@@ -15,7 +15,3 @@ spec:
       port: &port 5001
       protocol: TCP
       targetPort: *port
-    - name: http
-      port: &port 80
-      protocol: TCP
-      targetPort: *port
