@@ -28,6 +28,8 @@ spec:
         TZ: "${TIMEZONE}"
         ALLOWED_SENDER_DOMAINS: "${SECRET_DOMAIN}"
         RELAYHOST: "${SECRET_SMTP_RELAY}:${SECRET_SMTP_RELAY_PORT}"
+        RELAYHOST_USERNAME: "${SECRET_SMTP_RELAY_USERNAME}"
+        RELAYHOST_PASSWORD: "${SECRET_SMTP_RELAY_PASSWORD}"
       postfix:
         myhostname: &hostname "smtp.${SECRET_DOMAIN}"
         mynetworks: "${NET_POD_CIDR},${NET_SVC_CIDR},${NET_HOST_CIDR}"
