@@ -13,13 +13,13 @@ spec:
     - host: &host "nas01.${SECRET_DOMAIN}"
       http:
         paths:
-          - backend:
-              serviceName: *app
-              servicePort: 5001
-          - backend:
-              serviceName: *app
-              servicePort: 80
-
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: *app
+                port:
+                  number: 5001
   tls:
     - hosts:
         - *host
