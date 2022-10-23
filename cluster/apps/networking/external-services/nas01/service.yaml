@@ -12,6 +12,6 @@ spec:
   externalName: nas01.${SECRET_PRIVATE_DOMAIN}.
   ports:
     - name: http
-      port: &port 5001
+      port: &port 443
       protocol: TCP
       targetPort: *port
