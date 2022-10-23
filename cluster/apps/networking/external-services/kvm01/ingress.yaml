@@ -28,14 +28,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: &app pikvm
+  name: &app kvm01
   namespace: networking
   labels:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
 spec:
   type: ExternalName
-  externalName: pikvm.${SECRET_PRIVATE_DOMAIN}.
+  externalName: kvm01.${SECRET_PRIVATE_DOMAIN}.
   ports:
     - name: http
       port: &port 443
