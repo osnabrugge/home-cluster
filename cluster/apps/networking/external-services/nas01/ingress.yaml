@@ -11,7 +11,6 @@ spec:
   ingressClassName: nginx
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/upstream-vhost: &host "nas01.${SECRET_DOMAIN}"
   rules:
     - host: *host
       http:
