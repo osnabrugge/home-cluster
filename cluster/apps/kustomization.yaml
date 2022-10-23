@@ -9,7 +9,7 @@ resources:
   - networking
   - monitoring
   - media-automation
-  # - security
+  - security
   # - smart-home
   - storage
   - system
