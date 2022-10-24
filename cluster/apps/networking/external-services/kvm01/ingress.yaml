@@ -45,6 +45,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: calibre
+                name: kvm01
                 port:
                   number: 443
