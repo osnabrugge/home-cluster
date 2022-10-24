@@ -43,7 +43,7 @@ spec:
           type: vector
           address: 0.0.0.0:6010
           version: "2"
-        opnsense_filterlog_logs:
+        pfsense_filterlog_logs:
           type: syslog
           address: 0.0.0.0:5140
           mode: udp
@@ -55,7 +55,7 @@ spec:
           source: |
             # Standardize 'app' index
             .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
-        opnsense_filterlog_remap:
+        pfsense_filterlog_remap:
           type: remap
           inputs:
             - pfsense_filterlog_logs
@@ -81,14 +81,14 @@ spec:
                 }
               }
             }
-        opnsense_filterlog_route:
+        pfsense_filterlog_route:
           type: route
           inputs:
             - pfsense_filterlog_remap
           route:
             pass_action: >-
               .filter_action == "pass"
-        opnsense_filterlog_geoip:
+        pfsense_filterlog_geoip:
           type: geoip
           inputs:
             - pfsense_filterlog_route.pass_action
