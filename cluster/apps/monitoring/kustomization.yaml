@@ -5,6 +5,7 @@ resources:
   - goldilocks
   - grafana
   - kube-prometheus-stack
+  - logs
   - omada-exporter
   - snmp-exporter
   - thanos
