@@ -130,7 +130,7 @@ spec:
               {{`{{ kubernetes.pod_namespace }}`}}
             node: >-
               {{`{{ kubernetes.pod_node_name }}`}}
-        loki_opnsense_filterlog:
+        loki_pfsense_filterlog:
           type: loki
           inputs:
             - pfsense_filterlog_route._unmatched
