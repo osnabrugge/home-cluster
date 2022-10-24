@@ -5,7 +5,7 @@ resources:
   - cloudflare-ddns
   - echo-server
   - external-dns
-  # - external-services
+  - external-services
   - ingress-nginx
   - k8s-gateway
   - metallb
