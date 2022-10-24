@@ -11,4 +11,3 @@ resources:
   - metallb
   - omada
   - tigera-operator
-  - uptimerobot-heartbeat
