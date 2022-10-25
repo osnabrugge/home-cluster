@@ -1,0 +1,21 @@
+---
+kind: MoneroNodeSet
+apiVersion: utxo.com.br/v1alpha1
+metadata:
+  name: monero-node
+  namespace: privacy
+spec:
+  replicas: 1
+  tor: true
+  monderod:
+    image: sethsimmons/simple-monerod:v0.18.1.1@sha256:c4f5e738c77b85e392bee40e6fee91915561f1e4772046fdbca2b502ef0fc668
+    args:
+      - --rpc-restricted-bind-ip=0.0.0.0
+      - --rpc-restricted-bind-port=18089
+      - --public-node
+      - --no-igd
+      - --enable-dns-blocklist
+      - --prune-blockchain
+      - --zmq-pub=tcp://0.0.0.0:18083
+      - --in-peers=50
+      - --out-peers=50

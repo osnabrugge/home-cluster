@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - cloudnative-pg
   - kube-prometheus-stack
+  - monero-operator
   - metallb
   - rook-ceph
   - system-upgrade-controller
