@@ -86,7 +86,7 @@ spec:
         enabled: true
         mountPath: /data/nas
         path: /volume1/share
-        server: "${NAS_ADDRESS}"
+        server: "${NAS_ADDR}"
         type: nfs
     resources:
       requests:

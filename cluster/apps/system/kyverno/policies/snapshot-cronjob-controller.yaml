@@ -130,7 +130,7 @@ spec:
                           claimName: "{{ claimName }}"
                       - name: snapshots
                         nfs:
-                          server: "${NAS_ADDRESS}"
+                          server: "${NAS_ADDR}"
                           path: "/volume1/backup/home-cluster/kopia"
                     # annotations:
                     #   k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
