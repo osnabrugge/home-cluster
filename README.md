@@ -34,7 +34,8 @@ _Additional applications include [hajimari](https://github.com/toboshii/hajimari
 
 A lot of inspiration for my cluster came from the people that have shared their clusters over at [awesome-home-kubernetes](https://github.com/k8s-at-home/awesome-home-kubernetes)
 
+- [angelnu/k8s-gitops](https://github.com/angelny/k8s-gitops)
 - [billimek/k8s-gitops](https://github.com/billimek/k8s-gitops)
-- [carpenike/k8s-gitops](https://github.com/carpenike/homelab-gitops)
 - [bjw-s/k8s-gitops](https://github.com/bjw-s/k8s-gitops)
+- [carpenike/k8s-gitops](https://github.com/carpenike/homelab-gitops)
 - [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
