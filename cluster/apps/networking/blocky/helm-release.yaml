@@ -23,7 +23,7 @@ spec:
       enabled: true
       type: deployment
       strategy: RollingUpdate
-      replicas: 4
+      replicas: 3
     env:
       TZ: ${TIMEZONE}
     service:
@@ -35,7 +35,7 @@ spec:
         enabled: true
         type: LoadBalancer
         externalIPs:
-          - "${SVC_BLOCKY_ADDRESS}"
+          - "${SVC_BLOCKY_ADDR}"
         ports:
           dns-tcp:
             enabled: true
