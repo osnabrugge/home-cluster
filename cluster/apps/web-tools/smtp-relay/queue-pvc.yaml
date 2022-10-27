@@ -4,10 +4,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: queue-pvc
   namespace: home
-  labels:
-    app.kubernetes.io/name: &name smtp-relay
-    app.kubernetes.io/instance: *name
-    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce
