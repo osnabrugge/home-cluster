@@ -64,10 +64,9 @@ spec:
     #         name: blocky-whitelist
     config: |
       upstream:
-        externalResolvers:
-        #- tcp-tls:${SECRET_NEXTDNS_ID}.dns1.nextdns.io:853
-        #- tcp-tls:${SECRET_NEXTDNS_ID}.dns2.nextdns.io:853
-        - tcp+udp:${GATEWAY_ADDR}
+        default:
+          # DNS-over-HTTPS (DoH)
+          - ${SECRET_DOH_QUERY}
       conditional:
         mapping:
           ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
