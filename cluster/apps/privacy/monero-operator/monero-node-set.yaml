@@ -1,0 +1,19 @@
+kind: MoneroNodeSet
+apiVersion: utxo.com.br/v1alpha1
+metadata:
+  name: full-node
+spec:
+  replicas: 1
+  tor: {enabled: true}
+
+  monerod:
+  args:
+    - --rpc-restricted-bind-ip=0.0.0.0
+    - --rpc-restricted-bind-port=18089
+    - --public-node
+    - --no-igd
+    - --zmq-pub=tcp://0.0.0.0:18083
+    - --enable-dns-blocklist
+    - --prune-blockchain
+    - --in-peers=50
+    - --out-peers=50

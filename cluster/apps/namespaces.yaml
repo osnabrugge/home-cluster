@@ -59,7 +59,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: networking
+  name: media-automation
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
@@ -67,7 +67,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: media-automation
+  name: networking
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
