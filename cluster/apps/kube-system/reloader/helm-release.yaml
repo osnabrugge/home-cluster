@@ -24,3 +24,5 @@ spec:
       retries: 5
   values:
     fullnameOverride: reloader
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"

@@ -91,6 +91,8 @@ spec:
                 store: memberlist
         analytics:
           reporting_enabled: false
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
     gateway:
       enabled: true
       replicas: 3

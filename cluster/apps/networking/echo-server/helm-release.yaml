@@ -65,6 +65,8 @@ spec:
           - hosts:
               - *host
           - secretName: "${CLUSTER_CERT_SECRET}"
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 5m

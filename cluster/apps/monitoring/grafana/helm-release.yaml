@@ -138,3 +138,5 @@ spec:
                     operator: In
                     values: ["grafana"]
               topologyKey: kubernetes.io/hostname
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"

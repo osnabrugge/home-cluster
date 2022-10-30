@@ -31,6 +31,8 @@ spec:
           memory: 64M
         limits:
           memory: 250M
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     dashboard:
       replicaCount: 1
       ingress:
@@ -48,8 +50,6 @@ spec:
           - hosts:
               - *host
           - secretName: "${CLUSTER_CERT_SECRET}"
-      nodeSelector:
-        node-role.kubernetes.io/worker: "true"
       resources:
         requests:
           cpu: 10m

@@ -46,6 +46,8 @@ spec:
         enabled: true
         existingClaim: vaultwarden-config
         mountPath: /data
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 50m

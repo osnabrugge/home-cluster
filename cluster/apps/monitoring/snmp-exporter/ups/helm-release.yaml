@@ -47,3 +47,5 @@ spec:
       relabelings:
         - sourceLabels: [__param_target]
           targetLabel: instance
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"

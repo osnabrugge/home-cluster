@@ -33,6 +33,8 @@ spec:
         ports:
           http:
             port: 6767
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     ingress:
       main:
         enabled: true

@@ -23,6 +23,9 @@ spec:
       rollingUpdate:
         maxSurge: 1
 
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
+
     resources:
       requests:
         cpu: 247m

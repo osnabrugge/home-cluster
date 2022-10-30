@@ -60,6 +60,8 @@ spec:
             - kubernetes_logs
           address: vector-aggregator:6010
           version: "2"
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     service:
       enabled: false
     securityContext:

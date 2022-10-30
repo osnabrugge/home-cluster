@@ -35,3 +35,5 @@ spec:
       annotations:
         metallb.universe.tf/loadBalancerIPs: "${SVC_K8S_GATEWAY_ADDR}"
       externalTrafficPolicy: Local
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
