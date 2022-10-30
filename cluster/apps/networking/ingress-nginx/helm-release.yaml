@@ -84,6 +84,8 @@ spec:
           value: lost-in-space
         - name: SHOW_DETAILS
           value: "false"
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
   valuesFrom:
     # Cloudflare Networks
     # https://www.cloudflare.com/ips/
