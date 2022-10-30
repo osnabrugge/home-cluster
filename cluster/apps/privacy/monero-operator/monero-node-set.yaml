@@ -1,11 +1,12 @@
 kind: MoneroNodeSet
 apiVersion: utxo.com.br/v1alpha1
 metadata:
-  name: full-node
+  name: pruned-node
 spec:
   replicas: 1
   tor: {enabled: true}
-
+  nodeSelector:
+    node-role.kubernetes.io/worker: "true"
   monerod:
   args:
     - --rpc-restricted-bind-ip=0.0.0.0
