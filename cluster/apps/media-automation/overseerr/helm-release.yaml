@@ -34,8 +34,6 @@ spec:
         ports:
           http:
             port: *port
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
     ingress:
       main:
         enabled: true
@@ -67,6 +65,8 @@ spec:
         enabled: true
         existingClaim: overseerr-config
         mountPath: /app/config
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         cpu: 10m
