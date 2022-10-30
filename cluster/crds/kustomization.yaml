@@ -5,6 +5,7 @@ resources:
   - cloudnative-pg
   - kube-prometheus-stack
   - metallb
+  - monero-operator
   - rook-ceph
   - system-upgrade-controller
   - whereabouts
