@@ -38,6 +38,13 @@ spec:
       - --prune-blockchain
       - --in-peers=50
       - --out-peers=50
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      capabilities:
+        drop:
+          - all
     additionalContainers:
       - name: tor
         image: goldy/tor-hidden-service
