@@ -112,7 +112,7 @@ spec:
         cpu: 200m
         memory: 200Mi
       limits:
-        memory: 500Mi
+        memory: 1000Mi
     securityContext:
       readOnlyRootFilesystem: false
       runAsUser: 1000
