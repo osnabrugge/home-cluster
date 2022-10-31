@@ -14,8 +14,6 @@ spec:
     metadata:
       labels:
         app: monero-controller
-      annotations:
-        kyverno.io/ignore: "true"
     spec:
       serviceAccount: monero-controller
       containers:
@@ -32,6 +30,8 @@ spec:
             capabilities:
               drop:
                 - all
+          annotations:
+            kyverno.io/ignore: "true"
           nodeSelector:
             node-role.kubernetes.io/worker: "true"
           resources:
