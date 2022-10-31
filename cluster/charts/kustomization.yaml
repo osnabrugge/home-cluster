@@ -21,6 +21,7 @@ resources:
   - kyverno-charts.yaml
   - metallb-charts.yaml
   - metrics-server-charts.yaml
+  - node-feature-discovery-charts
   - project-calico-charts.yaml
   - prometheus-community-charts.yaml
   - rook-ceph-charts.yaml
