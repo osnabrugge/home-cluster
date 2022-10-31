@@ -25,7 +25,7 @@ spec:
           - resources:
               namespaces:
                 - calico-system
-                - monero-system
+                - monero
                 - tigera-operator
           - resources:
               annotations:
