@@ -1,0 +1,75 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: monerod
+  namespace: monero
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 0.2.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+    image:
+      repository: sethsimmons/simple-monerod
+      tag: v0.18.1.1
+    args:
+      - --rpc-restricted-bind-ip=0.0.0.0
+      - --rpc-restricted-bind-port=18089
+      - --public-node
+      - --no-igd
+      - --zmq-pub=tcp://0.0.0.0:18083
+      - --enable-dns-blocklist
+      - --prune-blockchain
+      - --in-peers=50
+      - --out-peers=50
+    additionalContainers:
+      - name: tor
+        image: goldy/tor-hidden-service
+        tag: v0.4.7.8-57f8867
+        env:
+          - name: MONEROD_TOR_SERVICE_HOSTS
+            value: 18089:monerod:18089
+          - name: MONEROD_TOR_SERVICE_VERSION
+            value: 3
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
+        persistence:
+          existingClaim: tor-keys
+          mountPath: /var/lib/tor/hidden_service/
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          p2p:
+            port: 18080
+            protocol: tcp
+          zmq:
+            port: 18083
+            protocol: tcp
+          rpc-restricted:
+            port: 18089
+            protocol: tcp
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
+    persistence:
+      existingClaim: monerod
+      mountPath: /home/monero
+    resources:
+      requests:
+        cpu: 200m
+        memory: 200Mi
+      limits:
+        memory: 500Mi

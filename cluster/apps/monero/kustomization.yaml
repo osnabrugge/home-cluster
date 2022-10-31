@@ -2,7 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - deployment.yaml
-  - monero-node-set.yaml
-  - rbac.yaml
-  - release.yaml
+  - helm-release.yaml
+  - monerod-pvc.yaml
+  - tor-pvc.yaml
