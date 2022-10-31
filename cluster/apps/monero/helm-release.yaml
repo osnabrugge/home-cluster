@@ -28,11 +28,7 @@ spec:
     image:
       repository: sethsimmons/simple-monerod
       tag: v0.18.1.1
-    env:
-      - name: entrypoint
-        value: chown
-      - name: user
-        value: root sethsimmons/simple-monerod monero:monero -R /home/monero/.bitmonero
+    command: ["monero:monero -R /home/monero/.bitmonero"]
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
       - --rpc-restricted-bind-port=18089
