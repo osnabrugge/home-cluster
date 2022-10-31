@@ -4,8 +4,6 @@ kind: Deployment
 metadata:
   name: monero-controller
   namespace: monero-system
-  annotations:
-    kyverno.io/ignore: "true"
 spec:
   selector:
     matchLabels:
@@ -16,6 +14,8 @@ spec:
     metadata:
       labels:
         app: monero-controller
+      annotations:
+        kyverno.io/ignore: "true"
     spec:
       serviceAccount: monero-controller
       containers:
