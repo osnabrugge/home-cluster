@@ -8,6 +8,8 @@ metadata:
     app.kubernetes.io/name: &name monerod
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
+  annotations:
+    pv.beta.kubernetes.io/gid: "1000"
 spec:
   accessModes:
     - ReadWriteOnce
