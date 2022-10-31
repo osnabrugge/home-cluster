@@ -22,11 +22,14 @@ spec:
     remediation:
       retries: 5
   values:
+    controller:
+      replicas: 1
+      strategy: RollingUpdate
     global:
       nameOverride: *app
     image:
-      repository: ghcr.io/sethsimmons/simple-monerod
-      tag: v0.18.0.0
+      repository: docker.io/sethsimmons/simple-monerod
+      tag: v0.18.1.1
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
       - --rpc-restricted-bind-port=18089
