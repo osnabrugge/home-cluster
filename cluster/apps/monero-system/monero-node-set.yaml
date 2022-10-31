@@ -1,9 +1,11 @@
 kind: MoneroNodeSet
 apiVersion: utxo.com.br/v1alpha1
 metadata:
-  name: full-node
+  name: pruned-node
+  namepsace: monero-system
 spec:
   replicas: 1
+  disksize: 200Gi
   tor: {enabled: true}
   nodeSelector:
     node-role.kubernetes.io/worker: "true"
