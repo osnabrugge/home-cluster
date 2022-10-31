@@ -47,7 +47,7 @@ spec:
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
       - --rpc-restricted-bind-port=18089
-      - --public-node
+      # - --public-node
       - --no-igd
       - --zmq-pub=tcp://0.0.0.0:18083
       - --enable-dns-blocklist
