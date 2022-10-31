@@ -23,6 +23,11 @@ spec:
       exclude:
         any:
           - resources:
+              namespaces:
+                - calico-system
+                - monero-system
+                - tigera-operator
+          - resources:
               annotations:
                 kyverno.io/ignore: "true"
       mutate:
