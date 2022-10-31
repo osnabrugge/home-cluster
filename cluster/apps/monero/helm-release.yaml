@@ -74,8 +74,10 @@ spec:
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     persistence:
-      existingClaim: monerod
-      mountPath: /home/monero/.bitmonero
+      bitmonero:
+        enabled: true
+        existingClaim: bitmonero
+        mountPath: /home/monero/.bitmonero
     resources:
       requests:
         cpu: 200m
