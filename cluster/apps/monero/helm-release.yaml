@@ -60,14 +60,20 @@ spec:
           http:
             enabled: false
           p2p:
+            enabled: true
             port: 18080
-            protocol: tcp
+            targetPort: 18080
+            protocol: TCP
           zmq:
+            enabled: true
             port: 18083
-            protocol: tcp
+            targetPort: 18083
+            protocol: TCP
           rpc-restricted:
+            enabled: true
             port: 18089
-            protocol: tcp
+            targetPort: 18089
+            protocol: TCP
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     persistence:
