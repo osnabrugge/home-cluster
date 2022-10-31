@@ -38,6 +38,7 @@ spec:
       - --prune-blockchain
       - --in-peers=50
       - --out-peers=50
+      - --user 1000:1000
     additionalContainers:
       - name: tor
         image: goldy/tor-hidden-service
