@@ -91,6 +91,7 @@ spec:
       limits:
         memory: 500Mi
     securityContext:
+      readOnlyRootFilesystem: false
       runAsUser: 1000
       runAsGroup: 1000
       fsGroup: 1000
