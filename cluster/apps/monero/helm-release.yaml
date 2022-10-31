@@ -36,8 +36,10 @@ spec:
           - chown -R 1000:1000 /home/monero
         securityContext:
           runAsUser: 0
+        podAnnotations:
+          k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
         volumeMounts:
-          - name: bitmonero
+          - name: monerod-nfs-pvc
             mountPath: /home/monero/
     image:
       repository: sethsimmons/simple-monerod
@@ -95,16 +97,16 @@ spec:
     podAnnotations:
       k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
     persistence:
-      # bitmonero:
-      #   enabled: true
-      #   mountPath: /home/monero/
-      #   existingClaim: bitmonero-pvc
       bitmonero:
         enabled: true
-        mountPath: /home/monero
-        path: /volume1/crypto
-        server: "${NAS_ADDR}"
-        type: nfs
+        mountPath: /home/monero/
+        existingClaim: monerod-nfs-pvc
+      # bitmonero:
+      #   enabled: true
+      #   mountPath: /home/monero
+      #   path: /volume1/crypto
+      #   server: "${NAS_ADDR}"
+      #   type: nfs
     resources:
       requests:
         cpu: 200m
