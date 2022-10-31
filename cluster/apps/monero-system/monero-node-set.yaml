@@ -1,7 +1,7 @@
 kind: MoneroNodeSet
 apiVersion: utxo.com.br/v1alpha1
 metadata:
-  name: pruned-node
+  name: full-node
 spec:
   replicas: 1
   tor: {enabled: true}
