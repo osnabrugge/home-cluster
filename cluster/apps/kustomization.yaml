@@ -10,7 +10,6 @@ resources:
   - media-automation
   - monero-system
   - networking
-  # - privacy
   - security
   # - smart-home
   - storage
