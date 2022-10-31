@@ -81,7 +81,7 @@ spec:
     persistence:
       bitmonero:
         enabled: true
-        mountPath: /home/monero/
+        mountPath: /home/monero/.bitmonero/
         existingClaim: bitmonero-pvc
     resources:
       requests:
