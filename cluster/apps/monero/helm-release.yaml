@@ -25,7 +25,7 @@ spec:
     global:
       nameOverride: *app
     image:
-      repository: sethsimmons/simple-monerod
+      repository: docker.io/sethsimmons/simple-monerod
       tag: v0.18.1.1
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
@@ -39,7 +39,7 @@ spec:
       - --out-peers=50
     additionalContainers:
       - name: tor
-        image: goldy/tor-hidden-service
+        image: docker.io/goldy/tor-hidden-service
         tag: v0.4.7.8-57f8867
         env:
           - name: MONEROD_TOR_SERVICE_HOSTS
