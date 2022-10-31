@@ -58,6 +58,8 @@ spec:
       - --out-peers=500
       - --limit-rate-up=51200
       - --limit-rate-down=204800
+      - --prep-blocks-threads=8
+      - --block-sync-size=500
     additionalContainers:
       - name: tor
         image: goldy/tor-hidden-service
