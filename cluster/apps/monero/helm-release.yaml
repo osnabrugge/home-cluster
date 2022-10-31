@@ -28,8 +28,8 @@ spec:
       image: busybox
       command: ["sh", "-c", "chown -R 1000:1000 /home/monero"]
       volumeMounts:
-        - name: /home/monero/
-          mountPath: bitmonero-pvc
+        - name: bitmonero-pvc
+          mountPath: /home/monero/
     global:
       nameOverride: *app
     image:
