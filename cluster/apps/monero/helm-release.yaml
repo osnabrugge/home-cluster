@@ -39,7 +39,7 @@ spec:
         podAnnotations:
           k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
         volumeMounts:
-          - name: monerod-nfs-pvc
+          - name: bitmonero
             mountPath: /home/monero/
     image:
       repository: sethsimmons/simple-monerod
