@@ -24,8 +24,55 @@ spec:
   values:
     kubeletDir: /var/lib/kubelet
     controller:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      podAnnotations:
+        k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
       replicas: 3
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
-    podAnnotations:
-      k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
+      resources:
+        csiProvisioner:
+          limits:
+            memory: 400Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+          podAnnotations:
+            k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
+        livenessProbe:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        nfs:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+          podAnnotations:
+            k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
+    node:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+      podAnnotations:
+        k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
+      resources:
+        livenessProbe:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        nfs:
+          limits:
+            memory: 300Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+        nodeDriverRegistrar:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
