@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - bitmonero-pvc.yaml
-  # - tor-pvc.yaml
+  - tor-pvc.yaml

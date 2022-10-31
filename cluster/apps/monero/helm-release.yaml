@@ -38,20 +38,22 @@ spec:
       - --prune-blockchain
       - --in-peers=50
       - --out-peers=50
-    # additionalContainers:
-    #   - name: tor
-    #     image: goldy/tor-hidden-service
-    #     tag: latest
-    #     env:
-    #       - name: MONEROD_TOR_SERVICE_HOSTS
-    #         value: 18089:monerod:18089
-    #       - name: MONEROD_TOR_SERVICE_VERSION
-    #         value: 3
-    #     nodeSelector:
-    #       node-role.kubernetes.io/worker: "true"
-    #     persistence:
-    #       existingClaim: tor-keys
-    #       mountPath: /var/lib/tor/hidden_service/
+    additionalContainers:
+      - name: tor
+        image: goldy/tor-hidden-service
+        tag: v0.4.7.8-57f8867
+        env:
+          - name: MONEROD_TOR_SERVICE_HOSTS
+            value: 18089:monerod:18089
+          - name: MONEROD_TOR_SERVICE_VERSION
+            value: 3
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
+        persistence:
+          tor-keys:
+            enabled: true
+            existingClaim: tor-keys
+            mountPath: /var/lib/tor/hidden_service/
     service:
       main:
         ports:
