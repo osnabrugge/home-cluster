@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 12h
-  url: https://github.com/cirocosta/monero-operator/monero-operator.git
+  url: https://github.com/cirocosta/monero-operator/
   ignore: |
     # exclude all
     /*
