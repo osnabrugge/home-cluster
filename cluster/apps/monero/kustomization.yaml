@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - monerod-pvc.yaml
-  - tor-pvc.yaml
+  # - tor-pvc.yaml
