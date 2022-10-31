@@ -28,6 +28,8 @@ spec:
     image:
       repository: sethsimmons/simple-monerod
       tag: v0.18.1.1
+    environment:
+      user: 1000:1000
     command: ["monero:monero -R /home/monero/.bitmonero"]
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
