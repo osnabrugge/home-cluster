@@ -27,7 +27,6 @@ spec:
       nameOverride: *app
     image:
       repository: sethsimmons/simple-monerod
-      tag: v0.18.1.1
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
       - --rpc-restricted-bind-port=18089
