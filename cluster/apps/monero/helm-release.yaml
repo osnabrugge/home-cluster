@@ -26,7 +26,11 @@ spec:
     initContainers:
       name: volume-mount-hack
       image: busybox
-      command: ["sh", "-c", "chown -R 1000:1000 /home/monero"]
+      command:
+        - sh
+        - c
+      args:
+        - chown -R 1000:1000 /home/monero
       volumeMounts:
         - name: bitmonero-pvc
           mountPath: /home/monero/
