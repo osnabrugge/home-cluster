@@ -52,8 +52,8 @@ spec:
         persistence:
           tor-keys:
             enabled: true
-            existingClaim: tor-keys
             mountPath: /var/lib/tor/hidden_service/
+            existingClaim: tor-keys-pvc
     service:
       main:
         ports:
@@ -79,8 +79,8 @@ spec:
     persistence:
       bitmonero:
         enabled: true
-        existingClaim: bitmonero
         mountPath: /home/monero/.bitmonero
+        existingClaim: bitmonero-pvc
     resources:
       requests:
         cpu: 200m

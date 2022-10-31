@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: bitmonero
+  name: bitmonero-pvc
   namespace: monero
   labels:
     app.kubernetes.io/name: &name monerod
