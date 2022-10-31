@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app monerod
+  name: &app simple-monerod
   namespace: monero
 spec:
   interval: 15m
@@ -24,7 +24,7 @@ spec:
       retries: 5
   values:
     global:
-      nameOverride: *app
+      nameOverride: monerod
     image:
       repository: sethsimmons/simple-monerod
     args:
