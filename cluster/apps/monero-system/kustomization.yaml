@@ -5,3 +5,4 @@ resources:
   - deployment.yaml
   - monero-node-set.yaml
   - rbac.yaml
+  - release.yaml
