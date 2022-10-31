@@ -6,17 +6,18 @@ metadata:
 spec:
   replicas: 1
   disksize: 200Gi
-  tor: {enabled: true}
+  tor: true
   nodeSelector:
     node-role.kubernetes.io/worker: "true"
   monerod:
-  args:
-    - --rpc-restricted-bind-ip=0.0.0.0
-    - --rpc-restricted-bind-port=18089
-    - --public-node
-    - --no-igd
-    - --zmq-pub=tcp://0.0.0.0:18083
-    - --enable-dns-blocklist
-    - --prune-blockchain
-    - --in-peers=50
-    - --out-peers=50
+    image: sethsimmons/simple-monerod:v0.18.0.0
+    args:
+      - --rpc-restricted-bind-ip=0.0.0.0
+      - --rpc-restricted-bind-port=18089
+      - --public-node
+      - --no-igd
+      - --zmq-pub=tcp://0.0.0.0:18083
+      - --enable-dns-blocklist
+      - --prune-blockchain
+      - --in-peers=50
+      - --out-peers=50
