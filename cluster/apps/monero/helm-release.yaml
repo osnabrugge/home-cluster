@@ -92,11 +92,19 @@ spec:
             protocol: TCP
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
     persistence:
+      # bitmonero:
+      #   enabled: true
+      #   mountPath: /home/monero/
+      #   existingClaim: bitmonero-pvc
       bitmonero:
         enabled: true
-        mountPath: /home/monero/
-        existingClaim: bitmonero-pvc
+        mountPath: /home/monero
+        path: /volume1/crypto
+        server: "${NAS_ADDR}"
+        type: nfs
     resources:
       requests:
         cpu: 200m
