@@ -28,10 +28,6 @@ spec:
     image:
       repository: sethsimmons/simple-monerod
       tag: v0.18.1.1
-    securityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
     env:
       - name: user
         value: 1000:1000
@@ -94,3 +90,7 @@ spec:
         memory: 200Mi
       limits:
         memory: 500Mi
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
