@@ -21,6 +21,7 @@ spec:
   upgrade:
     remediation:
       retries: 5
+  values:
     image:
       repository: sethsimmons/simple-monerod
       tag: v0.18.1.1
