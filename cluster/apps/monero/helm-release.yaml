@@ -33,7 +33,8 @@ spec:
       runAsGroup: 1000
       fsGroup: 1000
     env:
-      user: 1000:1000
+      - name: user
+        value: 1000:1000
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
       - --rpc-restricted-bind-port=18089
