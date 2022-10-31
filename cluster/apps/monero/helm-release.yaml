@@ -28,6 +28,7 @@ spec:
     image:
       repository: sethsimmons/simple-monerod
       tag: v0.18.1.1
+      user: ${FIXUID:-1000}:${FIXGID:-1000}
     args:
       - --rpc-restricted-bind-ip=0.0.0.0
       - --rpc-restricted-bind-port=18089
@@ -38,7 +39,6 @@ spec:
       - --prune-blockchain
       - --in-peers=50
       - --out-peers=50
-      - --user 1000:1000
     additionalContainers:
       - name: tor
         image: goldy/tor-hidden-service
