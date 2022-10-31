@@ -8,8 +8,9 @@ resources:
   - kube-system
   - monitoring
   - media-automation
+  - monero-system
   - networking
-  - privacy
+  # - privacy
   - security
   # - smart-home
   - storage
