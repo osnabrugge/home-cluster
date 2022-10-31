@@ -7,6 +7,7 @@ resources:
   - bokysan-charts.yaml
   - charlie-haley-charts.yaml
   - cloudnative-pg-charts.yaml
+  - csi-driver-nfs-charts.yaml
   - descheduler-charts.yaml
   - emberstack-charts.yaml
   - external-dns-charts.yaml
