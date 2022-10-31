@@ -25,6 +25,20 @@ spec:
   values:
     global:
       nameOverride: *app
+    initContainers:
+      init-permissions:
+        image: busybox:1.35.0
+        imagePullPolicy: IfNotPresent
+        command:
+          - sh
+          - c
+        args:
+          - chown -R 1000:1000 /home/monero
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+          - name: bitmonero
+            mountPath: /home/monero/
     image:
       repository: sethsimmons/simple-monerod
       tag: v0.18.1.1
@@ -83,20 +97,6 @@ spec:
         enabled: true
         mountPath: /home/monero/
         existingClaim: bitmonero-pvc
-    initContainers:
-      init-permissions:
-        image: busybox:1.35.0
-        imagePullPolicy: IfNotPresent
-        command:
-          - sh
-          - c
-        args:
-          - chown -R 1000:1000 /home/monero
-        securityContext:
-          runAsUser: 0
-        volumeMounts:
-          - name: bitmonero-pvc
-            mountPath: /home/monero/
     resources:
       requests:
         cpu: 200m
