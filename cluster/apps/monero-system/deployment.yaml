@@ -1,20 +1,40 @@
-kind: MoneroNodeSet
-apiVersion: utxo.com.br/v1alpha1
+---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: full-node
+  name: monero-controller
+  namespace: monero-system
 spec:
+  selector:
+    matchLabels:
+      app: monero-controller
   replicas: 1
-  tor: {enabled: true}
-  nodeSelector:
-    node-role.kubernetes.io/worker: "true"
-  monerod:
-  args:
-    - --rpc-restricted-bind-ip=0.0.0.0
-    - --rpc-restricted-bind-port=18089
-    - --public-node
-    - --no-igd
-    - --zmq-pub=tcp://0.0.0.0:18083
-    - --enable-dns-blocklist
-    - --prune-blockchain
-    - --in-peers=50
-    - --out-peers=50
+  revisionHistoryLimit: 0
+  template:
+    metadata:
+      labels:
+        app: monero-controller
+    spec:
+      serviceAccount: monero-controller
+      containers:
+        - name: monero-controller
+          image: ko://github.com/cirocosta/monero-operator/cmd/monero-operator
+          command: [monero-operator, operator]
+          env:
+            - name: TOR_SIDECAR_IMAGE
+              value: ko://github.com/cirocosta/monero-operator/cmd/monero-operator
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - all
+          nodeSelector:
+            node-role.kubernetes.io/worker: "true"
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              memory: 500Mi
