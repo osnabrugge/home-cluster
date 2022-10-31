@@ -1,7 +1,7 @@
 kind: MoneroNodeSet
 apiVersion: utxo.com.br/v1alpha1
 metadata:
-  name: full-node
+  name: monero-node
   namepsace: monero-system
 spec:
   replicas: 1
