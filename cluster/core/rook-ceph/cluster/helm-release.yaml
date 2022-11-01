@@ -50,10 +50,14 @@ spec:
           cluster: networking/macvlan-conf
       crashCollector:
         disable: false
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
       dashboard:
         enabled: true
         urlPrefix: /
         ssl: false
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
       storage:
         useAllNodes: false
         useAllDevices: false
@@ -83,6 +87,8 @@ spec:
           failureDomain: host
           replicated:
             size: 3
+          nodeSelector:
+            node-role.kubernetes.io/worker: "true"
         storageClass:
           enabled: true
           name: ceph-block
@@ -105,14 +111,20 @@ spec:
           metadataPool:
             replicated:
               size: 3
+            nodeSelector:
+              node-role.kubernetes.io/worker: "true"
           dataPools:
             - failureDomain: host
               replicated:
                 size: 3
+              nodeSelector:
+                node-role.kubernetes.io/worker: "true"
               name: data0
           metadataServer:
             activeCount: 1
             activeStandby: true
+            nodeSelector:
+              node-role.kubernetes.io/worker: "true"
             resources:
               requests:
                 cpu: 1000m
@@ -149,6 +161,8 @@ spec:
           preservePoolsOnDelete: true
           gateway:
             port: 80
+            nodeSelector:
+              node-role.kubernetes.io/worker: "true"
             resources:
               requests:
                 cpu: 1000m
