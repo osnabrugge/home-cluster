@@ -59,6 +59,14 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: media-servers
+  labels:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+    goldilocks.fairwinds.com/enabled: "true"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: media-automation
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
