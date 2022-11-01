@@ -32,6 +32,8 @@ spec:
     controller:
       replicas: 3
       strategy: RollingUpdate
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
     image:
       repository: ghcr.io/authelia/authelia
       tag: 4.37.2

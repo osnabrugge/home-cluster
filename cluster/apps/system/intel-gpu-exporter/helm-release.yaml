@@ -57,6 +57,8 @@ spec:
                   operator: In
                   values:
                     - "true"
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         gpu.intel.com/i915: 1
