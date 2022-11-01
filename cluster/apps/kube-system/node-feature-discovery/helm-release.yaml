@@ -58,7 +58,7 @@ spec:
             - name: intel-gpu
               matchOn:
                 - pciId:
-                    class: ["3e92"]
+                    class: ["0300"]
                     vendor: ["8086"]
             - name: coral-tpu
               matchOn:

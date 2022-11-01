@@ -142,7 +142,7 @@ spec:
             max_bytes: 2049000
           out_of_order_action: accept
           labels:
-            hostname: router01.${SECRET_DOMAIN}
+            hostname: router01.${SECRET_PRIVATE_DOMAIN}
     extraVolumeMounts:
       - name: geoip
         mountPath: /geoip
