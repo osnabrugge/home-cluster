@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 0.2.2
+      version: 1.0.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 0.4.7.2048@sha256:f289c20b6b515c495c04e3ab9aa9a881be50ef681b621990ce09cd336d153f8c
+      tag: 0.4.7.2066@sha256:96c495be400bf8c6b0806de301e2e3fd67f8bc5bcbfbb21ab6a257ad06d07472
     env:
       TZ: "${TIMEZONE}"
       PROWLARR__INSTANCE_NAME: Prowlarr

@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 41.7.2
+      version: 41.7.3
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -197,7 +197,7 @@ spec:
         externalLabels:
           cluster: home-ops
         thanos:
-          image: quay.io/thanos/thanos:v0.28.1
+          image: quay.io/thanos/thanos:v0.29.0
           version: "v0.28.1"
         podAntiAffinity: hard
         ruleSelectorNilUsesHelmValues: false
