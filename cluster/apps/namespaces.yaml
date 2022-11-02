@@ -50,15 +50,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: monitoring
-  labels:
-    kustomize.toolkit.fluxcd.io/prune: disabled
-    goldilocks.fairwinds.com/enabled: "true"
-    secret.home.arpa/postgres-superuser: "true"
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: media-servers
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
@@ -71,14 +62,23 @@ metadata:
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: monero
+#   labels:
+#     kustomize.toolkit.fluxcd.io/prune: disabled
+#     goldilocks.fairwinds.com/enabled: "true"
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: monero
+  name: monitoring
   labels:
     kustomize.toolkit.fluxcd.io/prune: disabled
     goldilocks.fairwinds.com/enabled: "true"
+    secret.home.arpa/postgres-superuser: "true"
 ---
 apiVersion: v1
 kind: Namespace
