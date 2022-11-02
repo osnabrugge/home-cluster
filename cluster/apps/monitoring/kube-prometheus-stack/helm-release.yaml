@@ -87,10 +87,10 @@ spec:
         pathType: Prefix
         ingressClassName: "nginx"
         hosts:
-          - &host "alert-manager.${SECRET_DOMAIN}"
+          - "alert-manager.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - *host
+              - "alert-manager.${SECRET_DOMAIN}"
           - secretName: "${CLUSTER_CERT_SECRET}"
       alertmanagerSpec:
         replicas: 3
@@ -186,10 +186,10 @@ spec:
           nginx.ingress.kubernetes.io/ssl-redirect: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
         hosts:
-          - &host "thanos-sidecar.${SECRET_DOMAIN}"
+          - "thanos-sidecar.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - *host
+              - "thanos-sidecar.${SECRET_DOMAIN}"
           - secretName: "${CLUSTER_CERT_SECRET}"
       prometheusSpec:
         replicas: 3
