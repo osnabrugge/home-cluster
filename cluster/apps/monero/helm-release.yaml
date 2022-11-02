@@ -61,6 +61,9 @@ spec:
             existingClaim: tor-keys-pvc
     service:
       main:
+        type: LoadBalancer
+        externalIPs: ["${SVC_MONEROD_ADDR}"]
+        externalTrafficPolicy: Local
         ports:
           http:
             enabled: false
