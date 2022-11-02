@@ -4,7 +4,7 @@ metadata:
   name: vaultwarden-config
   namespace: security
   labels:
-    app.kubernetes.io/name: vaultwarden
+    app.kubernetes.io/name: &name vaultwarden
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
