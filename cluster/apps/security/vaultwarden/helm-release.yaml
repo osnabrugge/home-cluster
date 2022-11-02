@@ -46,7 +46,6 @@ spec:
       config:
         enabled: true
         existingClaim: vaultwarden-config
-        mountPath: /data
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:
@@ -57,10 +56,4 @@ spec:
         memory: 200Mi
     envFrom:
       - secretRef:
-          name: vaultwarden-secret
-    env:
-      DATABASE_URL:
-        valueFrom:
-          secretKeyRef:
-            name: pgo-cluster-pguser-vaultwarden
-            key: uri
+          name: *app
