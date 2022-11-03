@@ -9,7 +9,7 @@ resources:
   - monitoring
   - media-automation
   - media-servers
-  - monero
+  # - monero
   - networking
   - security
   # - smart-home
