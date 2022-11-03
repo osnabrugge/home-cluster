@@ -39,9 +39,10 @@ spec:
       - --no-zmq
       - --enable-dns-blocklist
       - --prune-blockchain
-      - --db-sync-mode=safe
-      # - --in-peers=32
-      # - --out-peers=32
+      - --sync-pruned-blocks
+      - --db-sync-mode=safe:sync
+      - --in-peers=32
+      - --out-peers=32
       - --limit-rate-up=51200
       - --limit-rate-down=204800
       # - --prep-blocks-threads=8
