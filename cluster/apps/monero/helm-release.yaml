@@ -35,14 +35,17 @@ spec:
       - --rpc-restricted-bind-port=18089
       # - --public-node
       - --no-igd
-      - --zmq-pub=tcp://0.0.0.0:18083
+      # - --zmq-pub=tcp://0.0.0.0:18083
+      - --no-zmq
       - --enable-dns-blocklist
+      - --enforce-dns-checkpointing
       - --prune-blockchain
-      # - --in-peers=50
-      # - --out-peers=50
+      - --db-sync-mode=safe
+      - --in-peers=32
+      - --out-peers=32
       - --limit-rate-up=51200
       - --limit-rate-down=204800
-      - --prep-blocks-threads=8
+      # - --prep-blocks-threads=8
     additionalContainers:
       - name: tor
         image: goldy/tor-hidden-service
