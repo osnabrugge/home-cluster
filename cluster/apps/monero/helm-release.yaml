@@ -43,7 +43,7 @@ spec:
     #         mountPath: /home/monero/
     image:
       repository: sethsimmons/simple-monerod
-      tag: v0.18.1.1
+      tag: v0.18.1.2
     environment:
       user: 1000:1000
     args:
