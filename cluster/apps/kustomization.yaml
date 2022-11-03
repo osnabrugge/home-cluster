@@ -8,7 +8,7 @@ resources:
   - kube-system
   - monitoring
   - media-automation
-  - media-servers
+  # - media-servers
   # - monero
   - networking
   - security
