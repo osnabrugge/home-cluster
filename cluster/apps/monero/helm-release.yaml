@@ -38,11 +38,10 @@ spec:
       # - --zmq-pub=tcp://0.0.0.0:18083
       - --no-zmq
       - --enable-dns-blocklist
-      - --enforce-dns-checkpointing
       - --prune-blockchain
       - --db-sync-mode=safe
-      - --in-peers=50
-      - --out-peers=50
+      - --in-peers=32
+      # - --out-peers=50
       - --limit-rate-up=51200
       - --limit-rate-down=204800
       # - --prep-blocks-threads=8
