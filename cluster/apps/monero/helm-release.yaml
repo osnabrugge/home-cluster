@@ -92,8 +92,10 @@ spec:
     persistence:
       bitmonero:
         enabled: true
+        type: nfs
+        server: "${NAS_ADDR}"
+        path: /volume1/apps/monero/monerod
         mountPath: /home/monero/
-        existingClaim: monerod-nfs-pvc
     resources:
       requests:
         cpu: 200m
