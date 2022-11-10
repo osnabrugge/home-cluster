@@ -38,8 +38,8 @@ spec:
         - "9.9.9.9"
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
-    # prometheus:
-    #   enabled: true
-    #   servicemonitor:
-    #     enabled: true
-    #     prometheusInstance: monitoring
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
+        prometheusInstance: monitoring
