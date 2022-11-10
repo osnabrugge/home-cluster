@@ -25,22 +25,6 @@ spec:
   values:
     global:
       nameOverride: *app
-    # initContainers:
-    #   init-permissions:
-    #     image: busybox:1.35.0
-    #     imagePullPolicy: IfNotPresent
-    #     command:
-    #       - sh
-    #       - -c
-    #     args:
-    #       - chown -R 1000:1000 /home/monero
-    #     securityContext:
-    #       runAsUser: 0
-    #     podAnnotations:
-    #       k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
-    #     volumeMounts:
-    #       - name: bitmonero
-    #         mountPath: /home/monero/
     image:
       repository: sethsimmons/simple-monerod
       tag: v0.18.1.2
@@ -51,14 +35,17 @@ spec:
       - --rpc-restricted-bind-port=18089
       # - --public-node
       - --no-igd
-      - --zmq-pub=tcp://0.0.0.0:18083
+      # - --zmq-pub=tcp://0.0.0.0:18083
+      - --no-zmq
       - --enable-dns-blocklist
       - --prune-blockchain
-      # - --in-peers=50
-      # - --out-peers=50
+      - --sync-pruned-blocks
+      - --db-sync-mode=safe:sync
+      # - --in-peers=32
+      # - --out-peers=32
       - --limit-rate-up=51200
       - --limit-rate-down=204800
-      - --prep-blocks-threads=8
+      # - --prep-blocks-threads=8
     additionalContainers:
       - name: tor
         image: goldy/tor-hidden-service
@@ -77,6 +64,9 @@ spec:
             existingClaim: tor-keys-pvc
     service:
       main:
+        type: LoadBalancer
+        externalIPs: ["${SVC_MONEROD_ADDR}"]
+        externalTrafficPolicy: Local
         ports:
           http:
             enabled: false
@@ -102,14 +92,10 @@ spec:
     persistence:
       bitmonero:
         enabled: true
+        type: nfs
+        server: "${NAS_ADDR}"
+        path: /volume1/apps/monero/monerod
         mountPath: /home/monero/
-        existingClaim: monerod-nfs-pvc
-      # bitmonero:
-      #   enabled: true
-      #   mountPath: /home/monero
-      #   path: /volume1/crypto
-      #   server: "${NAS_ADDR}"
-      #   type: nfs
     resources:
       requests:
         cpu: 200m

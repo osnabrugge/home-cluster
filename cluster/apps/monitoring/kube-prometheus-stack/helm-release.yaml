@@ -87,10 +87,10 @@ spec:
         pathType: Prefix
         ingressClassName: "nginx"
         hosts:
-          - &host "alert-manager.${SECRET_DOMAIN}"
+          - "alert-manager.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - *host
+              - "alert-manager.${SECRET_DOMAIN}"
           - secretName: "${CLUSTER_CERT_SECRET}"
       alertmanagerSpec:
         replicas: 3
@@ -186,16 +186,16 @@ spec:
           nginx.ingress.kubernetes.io/ssl-redirect: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
         hosts:
-          - &host "thanos-sidecar.${SECRET_DOMAIN}"
+          - "thanos-sidecar.${SECRET_DOMAIN}"
         tls:
           - hosts:
-              - *host
+              - "thanos-sidecar.${SECRET_DOMAIN}"
           - secretName: "${CLUSTER_CERT_SECRET}"
       prometheusSpec:
         replicas: 3
         replicaExternalLabelName: __replica__
         externalLabels:
-          cluster: home-ops
+          cluster: home-cluster
         thanos:
           image: quay.io/thanos/thanos:v0.29.0
           version: "v0.28.1"
@@ -224,20 +224,20 @@ spec:
           limits:
             memory: 8000Mi
         additionalScrapeConfigs:
-          - job_name: coredns
-            scrape_interval: 1m
-            scrape_timeout: 10s
-            honor_timestamps: true
-            static_configs:
-              - targets:
-                  - "router01.${SECRET_PRIVATE_DOMAIN}:9153"
-          - job_name: frr-exporter
-            scrape_interval: 1m
-            scrape_timeout: 10s
-            honor_timestamps: true
-            static_configs:
-              - targets:
-                  - "router01.${SECRET_PRIVATE_DOMAIN}:9342"
+          # - job_name: coredns
+          #   scrape_interval: 1m
+          #   scrape_timeout: 10s
+          #   honor_timestamps: true
+          #   static_configs:
+          #     - targets:
+          #         - "router01.${SECRET_PRIVATE_DOMAIN}:9153"
+          # - job_name: frr-exporter
+          #   scrape_interval: 1m
+          #   scrape_timeout: 10s
+          #   honor_timestamps: true
+          #   static_configs:
+          #     - targets:
+          #         - "router01.${SECRET_PRIVATE_DOMAIN}:9342"
           - job_name: node-exporter
             scrape_interval: 1m
             scrape_timeout: 10s

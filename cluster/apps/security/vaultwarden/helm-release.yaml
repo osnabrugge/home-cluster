@@ -37,16 +37,40 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: &port 80
           websocket:
             enabled: true
-            port: 3012
+            port: &websocket-port 3012
             protocol: TCP
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/icon: "form-textbox-password"
+          # external-dns.home.arpa/enabled: "true"
+        hosts:
+          - host: &host "vault.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *port
+              - path: /notifications/hub/negotiate
+                pathType: Prefix
+                service:
+                  port: *port
+              - path: /notifications/hub
+                pathType: Prefix
+                service:
+                  port: *websocket-port
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
         existingClaim: vaultwarden-config
-        mountPath: /data
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
     resources:
@@ -57,10 +81,4 @@ spec:
         memory: 200Mi
     envFrom:
       - secretRef:
-          name: vaultwarden-secret
-    env:
-      DATABASE_URL:
-        valueFrom:
-          secretKeyRef:
-            name: pgo-cluster-pguser-vaultwarden
-            key: uri
+          name: *app

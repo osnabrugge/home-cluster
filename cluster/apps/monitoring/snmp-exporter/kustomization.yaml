@@ -3,15 +3,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
 resources:
-  - ups
   - pdu
+  - ups
 configMapGenerator:
-  - name: ups-dashboard
-    files:
-      - ups-dashboard.json=ups/dashboard.json
   - name: pdu-dashboard
     files:
       - pdu-dashboard.json=pdu/dashboard.json
+  - name: ups-dashboard
+    files:
+      - ups-dashboard.json=ups/dashboard.json
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

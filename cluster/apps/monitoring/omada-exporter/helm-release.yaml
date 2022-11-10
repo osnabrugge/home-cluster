@@ -20,8 +20,6 @@ spec:
       repository: ghcr.io/charlie-haley/omada_exporter
       pullPolicy: IfNotPresent
       tag: 0.7.0
-      nodeSelector:
-        node-role.kubernetes.io/worker: "true"
     omada:
       host: ${SECRET_OMADA_HOST}
       username: ${SECRET_OMADA_USERNAME}
@@ -29,3 +27,5 @@ spec:
       request_timeout: 60
       site: Toronto
       insecure: true
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
