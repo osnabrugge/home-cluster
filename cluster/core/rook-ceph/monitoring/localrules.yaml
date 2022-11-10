@@ -671,7 +671,7 @@ spec:
             ) >= 0.01 or (
               increase(node_network_receive_drop_total{device!="lo"}[1m]) +
               increase(node_network_transmit_drop_total{device!="lo"}[1m])
-            ) >= 30
+            ) >= 40
           for: 5m
           labels:
             severity: warning
