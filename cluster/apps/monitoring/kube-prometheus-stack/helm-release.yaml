@@ -195,7 +195,7 @@ spec:
         replicas: 3
         replicaExternalLabelName: __replica__
         externalLabels:
-          cluster: home-ops
+          cluster: home-cluster
         thanos:
           image: quay.io/thanos/thanos:v0.29.0
           version: "v0.28.1"

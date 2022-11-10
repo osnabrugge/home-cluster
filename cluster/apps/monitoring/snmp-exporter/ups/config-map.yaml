@@ -6,7 +6,7 @@ metadata:
   namespace: monitoring
 data:
   snmp.yaml: |
-    apcups:
+    cyberpowerups:
       retries: 5
       timeout: 60s
       walk:
