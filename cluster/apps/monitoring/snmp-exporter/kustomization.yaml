@@ -4,14 +4,14 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - pdu
-  # - ups
+  - ups
 configMapGenerator:
   - name: pdu-dashboard
     files:
       - pdu-dashboard.json=pdu/dashboard.json
-  # - name: ups-dashboard
-  #   files:
-  #     - ups-dashboard.json=ups/dashboard.json
+  - name: ups-dashboard
+    files:
+      - ups-dashboard.json=ups/dashboard.json
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
