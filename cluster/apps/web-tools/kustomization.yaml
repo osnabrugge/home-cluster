@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - hajimari
   - theme-park
-  # - smtp-relay
+  - smtp-relay
