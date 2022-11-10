@@ -117,7 +117,7 @@ spec:
       enabled: true
       ingressClassName: "nginx"
       annotations:
-        # external-dns.home.arpa/enabled: "true"
+        external-dns.home.arpa/enabled: "true"
         hajimari.io/enable: "true"
         hajimari.io/icon: "chart-box"
       hosts:
