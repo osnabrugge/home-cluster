@@ -42,10 +42,24 @@ spec:
       - --sync-pruned-blocks
       - --db-sync-mode=safe:sync
       # - --in-peers=32
-      # - --out-peers=32
+      - --out-peers=32
       - --limit-rate-up=51200
       - --limit-rate-down=204800
       # - --prep-blocks-threads=8
+    initContainers:
+      init-permission:
+        image: busybox:1.35.0
+        imagePullPolicy: IfNotPresent
+        command:
+          - sh
+          - -c
+        args:
+          - chown -R 1000:1000 /home/monero;
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+          - name: bitmonero
+            mountPath: /home/monero
     additionalContainers:
       - name: tor
         image: goldy/tor-hidden-service
@@ -60,7 +74,7 @@ spec:
         persistence:
           tor-keys:
             enabled: true
-            mountPath: /var/lib/tor/hidden_service/
+            mountPath: /var/lib/tor/hidden_service
             existingClaim: tor-keys-pvc
     service:
       main:
@@ -87,15 +101,13 @@ spec:
             protocol: TCP
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
-    podAnnotations:
-      k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
+    # podAnnotations:
+    #   k8s.v1.cni.cncf.io/networks: networking/macvlan-conf
     persistence:
       bitmonero:
         enabled: true
-        type: nfs
-        server: "${NAS_ADDR}"
-        path: /volume1/apps/monero/monerod
-        mountPath: /home/monero/
+        mountPath: /home/monero
+        existingClaim: monerod-data
     resources:
       requests:
         cpu: 200m
