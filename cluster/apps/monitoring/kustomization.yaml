@@ -2,12 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - goldilocks
-  - grafana
-  - kube-prometheus-stack
-  # - logs
-  # - omada-exporter
-  - snmp-exporter
-  - speedtest-exporter
-  - thanos
-  - vpa
+  - ./flux
+  - ./grafana
+  - ./kube-prometheus-stack
+  # - ./logs
+  # - ./omada-exporter
+  - ./snmp-exporter
+  - ./speedtest-exporter
+  - ./thanos
+  - ./vpa

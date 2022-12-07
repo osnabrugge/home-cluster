@@ -21,6 +21,9 @@ spec:
   upgrade:
     remediation:
       retries: 5
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     alertmanager:
       config:
@@ -198,7 +201,7 @@ spec:
           cluster: home-cluster
         thanos:
           image: quay.io/thanos/thanos:v0.29.0
-          version: "v0.28.1"
+          version: "v0.29.0"
         podAntiAffinity: hard
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
