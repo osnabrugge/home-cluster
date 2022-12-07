@@ -28,6 +28,8 @@ spec:
     replicas: 3
     rbac:
       pspEnabled: false
+    testFramework:
+      enabled: false
     admin:
       existingSecret: grafana-admin
     envFromSecrets:
@@ -76,12 +78,20 @@ spec:
               path: /var/lib/grafana/dashboards/default
     datasources:
       datasources.yaml:
+        apiVersion: 1
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
         datasources:
           - name: Prometheus
             type: prometheus
             access: proxy
             url: http://thanos-query.monitoring.svc.cluster.local:9090
             isDefault: true
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki-gateway.monitoring.svc.cluster.local:80
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/7845
