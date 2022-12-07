@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/plex
-      tag: 1.29.1.6316-f4cdfea9c@sha256:0c41145101d045363337f6e49de8f5b52a20a22a24131031aafcf8841a6e16a4
+      tag: 1.29.2.6364-6d72b0cf6@sha256:3457eeeba1c1c698470aa20d23db37c38969581ff86b111c2f31625886dbc948
     env:
       TZ: "${TIMEZONE}"
     service:
