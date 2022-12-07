@@ -21,6 +21,9 @@ spec:
   upgrade:
     remediation:
       retries: 5
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     loki:
       structuredConfig:
@@ -40,6 +43,8 @@ spec:
           split_queries_by_interval: 15m
           ingestion_rate_mb: 8
           ingestion_burst_size_mb: 16
+          shard_streams:
+            enabled: true
         # schema_config:
         #   configs:
         #     - from: "2021-08-01"
@@ -134,10 +139,18 @@ spec:
         size: 10Gi
         storageClass: ceph-block
     monitoring:
+      serviceMonitor:
+        enabled: false
+        metricsInstance:
+          enabled: false
       selfMonitoring:
         enabled: false
         grafanaAgent:
           installOperator: false
+        lokiCanary:
+          enabled: false
+    test:
+      enabled: false
   # valuesFrom:
   #   - targetPath: loki.structuredConfig.common.storage.s3.bucketnames
   #     kind: ConfigMap
