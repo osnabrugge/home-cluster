@@ -1,0 +1,122 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app blackbox-exporter
+  namespace: monitoring
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: prometheus-blackbox-exporter
+      version: 7.1.3
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    fullnameOverride: *app
+    image:
+      repository: quay.io/prometheus/blackbox-exporter
+    pspEnabled: false
+    ingress:
+      enabled: true
+      className: nginx
+      hosts:
+        - host: &host "blackbox.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+    securityContext:
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        add: ["NET_RAW"]
+    config:
+      modules:
+        http_2xx:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+            follow_redirects: true
+            preferred_ip_protocol: "ip4"
+        icmp:
+          prober: icmp
+          timeout: 30s
+          icmp:
+            preferred_ip_protocol: "ip4"
+    serviceMonitor:
+      enabled: true
+      defaults:
+        labels:
+          release: prometheus
+        interval: 2m
+        scrapeTimeout: 30s
+      targets:
+        - name: router01-icmp
+          module: icmp
+          url: router01
+        - name: nas01-icmp
+          module: icmp
+          url: nas01
+        - name: pve01-icmp
+          module: icmp
+          url: pve01
+        - name: tiny01-icmp
+          module: icmp
+          url: tiny01
+        - name: tiny02-icmp
+          module: icmp
+          url: tiny02
+        - name: tiny03-icmp
+          module: icmp
+          url: tiny03
+        - name: tiny04-icmp
+          module: icmp
+          url: tiny04
+        - name: tiny05-icmp
+          module: icmp
+          url: tiny05
+        - name: hue01-icmp
+          module: icmp
+          url: hue01
+        - name: ups01-icmp
+          module: icmp
+          url: ups01
+        - name: pdu01-icmp
+          module: icmp
+          url: pdu01
+        - name: pdu02-icmp
+          module: icmp
+          url: pdu02
+        - name: kvm01-icmp
+          module: icmp
+          url: kvm01
+        - name: kvm02-icmp
+          module: icmp
+          url: kvm02
+    prometheusRule:
+      enabled: true
+      additionalLabels:
+        app: prometheus-operator
+        release: prometheus
+      rules:
+        - alert: BlackboxProbeFailed
+          expr: probe_success == 0
+          for: 15m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The host {{"{{ $labels.target }}"}} is currently unreachable
