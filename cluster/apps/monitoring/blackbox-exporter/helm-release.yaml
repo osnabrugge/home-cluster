@@ -90,6 +90,12 @@ spec:
         - name: tiny05-icmp
           module: icmp
           url: tiny05.${SECRET_PRIVATE_DOMAIN}
+        - name: pi01-icmp
+          module: icmp
+          url: pi01.${SECRET_PRIVATE_DOMAIN}
+        - name: pi02-icmp
+          module: icmp
+          url: pi02.${SECRET_PRIVATE_DOMAIN}
         - name: hue01-icmp
           module: icmp
           url: hue01.${SECRET_PRIVATE_DOMAIN}
