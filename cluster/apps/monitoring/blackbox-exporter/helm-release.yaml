@@ -37,6 +37,8 @@ spec:
       tls:
         - hosts:
             - *host
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     securityContext:
       readOnlyRootFilesystem: true
       allowPrivilegeEscalation: false
@@ -120,3 +122,4 @@ spec:
           annotations:
             description: |-
               The host {{"{{ $labels.target }}"}} is currently unreachable
+      nodeSelector:

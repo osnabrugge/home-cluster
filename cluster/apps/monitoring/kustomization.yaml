@@ -8,6 +8,7 @@ resources:
   - ./kube-prometheus-stack
   # - ./logs
   # - ./omada-exporter
+  - ./smartctl-exporter
   - ./snmp-exporter
   - ./speedtest-exporter
   - ./thanos
