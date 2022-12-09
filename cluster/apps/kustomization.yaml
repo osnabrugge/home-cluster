@@ -12,7 +12,7 @@ resources:
   - monero
   - networking
   - security
-  # - smart-home
+  - smart-home
   - storage
   - system
   - web-tools
