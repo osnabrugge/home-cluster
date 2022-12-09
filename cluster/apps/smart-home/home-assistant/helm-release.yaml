@@ -61,6 +61,7 @@ spec:
         tls:
           - hosts:
               - *host
+          - secretName: "${CLUSTER_CERT_SECRET}"
     probes:
       liveness:
         enabled: false
