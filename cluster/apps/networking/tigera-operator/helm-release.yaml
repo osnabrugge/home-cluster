@@ -46,8 +46,10 @@ spec:
         node-role.kubernetes.io/worker: "true"
       controlPlaneTolerations:
         - key: node-role.kubernetes.io/control-plane
+          operator: Exists
           effect: NoSchedule
         - key: node-role.kubernetes.io/master
+          operator: Exists
           effect: NoSchedule
       nodeMetricsPort: 9091
       typhaMetricsPort: 9093
