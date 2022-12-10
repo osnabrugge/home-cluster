@@ -17,8 +17,14 @@ spec:
   monitoring:
     enablePodMonitor: true
   affinity:
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: node-role.kubernetes.io/worker
+                operator: In
+                values:
+                  - "true"
   # backup:
   #   retentionPolicy: 30d
   #   barmanObjectStore:
