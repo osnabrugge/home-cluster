@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: redis
-      version: 17.3.15
+      version: 17.3.14
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -17,10 +17,13 @@ spec:
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
     remediation:
-      retries: 5
+      retries: 3
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     global:
       imageRegistry: public.ecr.aws
