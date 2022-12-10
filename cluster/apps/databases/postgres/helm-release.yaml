@@ -17,19 +17,19 @@ spec:
   install:
     createNamespace: true
     remediation:
-      retries: 3
+      retries: 5
   upgrade:
     remediation:
-      retries: 3
+      retries: 5
   values:
     crds:
-      create: true
+      create: false
     config:
       data:
         INHERITED_ANNOTATIONS: kyverno.io/ignore
-    # image:
-    #   repository: ghcr.io/cloudnative-pg/cloudnative-pg-testing
-    #   tag: main
+    image:
+      repository: ghcr.io/cloudnative-pg/cloudnative-pg-testing
+      tag: main
     affinity:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
