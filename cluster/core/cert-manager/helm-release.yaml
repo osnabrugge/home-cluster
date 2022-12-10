@@ -26,8 +26,12 @@ spec:
     replicaCount: 3
     webhook:
       replicaCount: 3
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
     cainjector:
       replicaCount: 3
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
     extraArgs:
       - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
       - --dns01-recursive-nameservers-only
