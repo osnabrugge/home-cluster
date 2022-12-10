@@ -22,8 +22,6 @@ spec:
     remediation:
       retries: 5
   values:
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
     global:
       imageRegistry: public.ecr.aws
       storageClass: ceph-block
@@ -41,6 +39,6 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-    # master:
-    #   nodeSelector:
-    #     node-role.kubernetes.io/worker: "true"
+    replica:
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
