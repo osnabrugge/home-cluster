@@ -42,6 +42,9 @@ spec:
         nodeAddressAutodetectionV4:
           cidrs:
             - "${NET_HOST_CIDR}"
+      controlPlaneNodeSelector:
+        nodeSelector:
+          node-role.kubernetes.io/worker: "true"
       controlPlaneTolerations:
         - key: node-role.kubernetes.io/control-plane
           effect: NoSchedule
