@@ -16,8 +16,9 @@ spec:
     name: postgres-superuser
   monitoring:
     enablePodMonitor: true
-  nodeSelector:
-    node-role.kubernetes.io/worker: "true"
+  affinity:
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
   # backup:
   #   retentionPolicy: 30d
   #   barmanObjectStore:
