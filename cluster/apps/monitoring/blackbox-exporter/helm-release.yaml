@@ -96,9 +96,9 @@ spec:
         - name: pi02-icmp
           module: icmp
           url: pi02.${SECRET_PRIVATE_DOMAIN}
-        - name: hue01-icmp
-          module: icmp
-          url: hue01.${SECRET_PRIVATE_DOMAIN}
+        # - name: hue01-icmp
+        #   module: icmp
+        #   url: hue01.${SECRET_PRIVATE_DOMAIN}
         - name: ups01-icmp
           module: icmp
           url: ups01.${SECRET_PRIVATE_DOMAIN}
