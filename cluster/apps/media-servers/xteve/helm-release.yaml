@@ -67,7 +67,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: appdata
+        existingClaim: xteve-config
         subPath:
           - path: xteve/config
             mountPath: /config
