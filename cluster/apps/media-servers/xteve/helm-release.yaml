@@ -63,7 +63,7 @@ spec:
         externalTrafficPolicy: Local
         ports:
           http:
-            port: 32400
+            port: 34400
     persistence:
       config:
         enabled: true
