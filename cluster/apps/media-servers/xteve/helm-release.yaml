@@ -39,7 +39,7 @@ spec:
       PUID: "${SECURITY_CONTEXT_RUN_AS_USER}"
       PGID: "${SECURITY_CONTEXT_RUN_AS_GROUP}"
       XTEVE_PORT: 34400
-      use_xTeveAPI: true
+      # use_xTeveAPI: true
       trim_xmltv: false
       use_lazystream: true
       include_nhl: true
@@ -49,13 +49,13 @@ spec:
       cdn: akc
       use_guide2go: false
       YamlList: "CBLguide.yaml SATguide.yaml SATSport.yaml"
-      use_plexAPI: true
+      # use_plexAPI: true
       lazyStreamReleaseName: x86_64-unknown-linux-musl
       lazyStreamReleaseNameAarch64: aarch64-unknown-linux-gnu
       # quality: 720p60
-    envFrom:
-      - secretRef:
-          name: *app
+    # envFrom:
+    #   - secretRef:
+    #       name: *app
     service:
       main:
         type: LoadBalancer
