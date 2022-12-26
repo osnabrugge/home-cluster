@@ -1,5 +1,3 @@
-# https://github.com/taylorbourne/xteve_lazystream
-# Example setup: https://github.com/taylorbourne/xteve_lazystream/wiki/Scripts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -29,33 +27,11 @@ spec:
       namespace: networking
   values:
     image:
-    # https://hub.docker.com/r/taylorbourne/xteve_lazystream
-      repository: docker.io/taylorbourne/xteve_lazystream
-      tag: latest
+      repository: alturismo/xteve
+      tag: latest@sha256:7885f2759c0da3c5f2c72b2e45ba4b602bdd7d6f04cc6abba201091f11c93a95
       pullPolicy: IfNotPresent
-    # https://github.com/taylorbourne/xteve_lazystream/blob/master/sample.env
     env:
       TZ: ${TIMEZONE}
-      PUID: "${SECURITY_CONTEXT_RUN_AS_USER}"
-      PGID: "${SECURITY_CONTEXT_RUN_AS_GROUP}"
-      XTEVE_PORT: 34400
-      # use_xTeveAPI: true
-      trim_xmltv: false
-      use_lazystream: true
-      include_nhl: true
-      nhl_start_channel: 1000
-      include_mlb: true
-      mlb_start_channel: 2000
-      cdn: akc
-      use_guide2go: false
-      YamlList: "CBLguide.yaml SATguide.yaml SATSport.yaml"
-      # use_plexAPI: true
-      lazyStreamReleaseName: x86_64-unknown-linux-musl
-      lazyStreamReleaseNameAarch64: aarch64-unknown-linux-gnu
-      # quality: 720p60
-    # envFrom:
-    #   - secretRef:
-    #       name: *app
     service:
       main:
         type: LoadBalancer
@@ -64,25 +40,6 @@ spec:
         ports:
           http:
             port: 34400
-    persistence:
-      config:
-        enabled: true
-        existingClaim: xteve-config
-        subPath:
-          - path: xteve/config
-            mountPath: /config
-          - path: xteve/xteve
-            mountPath: /xteve
-          - path: xteve/guide2go
-            mountPath: /guide2go
-          - path: xteve/playlists
-            mountPath: /playlists
-      tmp:
-        enabled: true
-        type: emptyDir
-        medium: Memory
-        sizeLimit: 8Gi
-        mountPath: /tmp/xteve
     ingress:
       main:
         enabled: true
@@ -101,5 +58,9 @@ spec:
           - hosts:
               - *host
           - secretName: "${CLUSTER_CERT_SECRET}"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: xteve-config
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
