@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app intel-gpu-exporter
+  name: intel-gpu-exporter
   namespace: system
 spec:
   interval: 15m
@@ -14,6 +14,7 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
+  maxHistory: 3
   install:
     createNamespace: true
     remediation:
@@ -22,8 +23,8 @@ spec:
     remediation:
       retries: 3
   dependsOn:
-    - name: intel-gpu-plugin
-      namespace: kube-system
+    - name: intel-device-plugin-operator
+      namespace: system
   values:
     controller:
       type: daemonset
@@ -35,30 +36,22 @@ spec:
         ports:
           http:
             port: 8080
-        monitor:
-          enabled: true
-          endpoints:
-            - port: http
-              scheme: http
-              path: /metrics
-              interval: 1m
-              scrapeTimeout: 10s
-              relabelings:
-                - sourceLabels: [__meta_kubernetes_pod_node_name]
-                  targetLabel: node
+    serviceMonitor:
+      main:
+        enabled: true
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
+            relabelings:
+              - sourceLabels: [__meta_kubernetes_pod_node_name]
+                targetLabel: node
     securityContext:
       privileged: true
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: feature.node.kubernetes.io/custom-intel-gpu
-                  operator: In
-                  values:
-                    - "true"
     nodeSelector:
-      node-role.kubernetes.io/worker: "true"
+      intel.feature.node.kubernetes.io/gpu: "true"
     resources:
       requests:
         gpu.intel.com/i915: 1
