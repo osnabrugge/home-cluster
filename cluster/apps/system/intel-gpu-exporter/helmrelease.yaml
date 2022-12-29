@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 3
   dependsOn:
-    - name: intel-device-plugin-operator
+    - name: intel-gpu-plugin
       namespace: system
   values:
     controller:
