@@ -17,10 +17,10 @@ spec:
   install:
     createNamespace: true
     remediation:
-      retries: 5
+      retries: 3
   upgrade:
     remediation:
-      retries: 5
+      retries: 3
   dependsOn:
     - name: intel-gpu-plugin
       namespace: kube-system
@@ -57,8 +57,8 @@ spec:
                   operator: In
                   values:
                     - "true"
-      nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     resources:
       requests:
         gpu.intel.com/i915: 1
