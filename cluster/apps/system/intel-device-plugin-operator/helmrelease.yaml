@@ -24,6 +24,8 @@ spec:
     remediation:
       retries: 3
   dependsOn:
+    - name: cert-manager
+      namespace: cert-manager
     - name: node-feature-discovery
       namespace: system
   values:
