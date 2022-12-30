@@ -2,29 +2,85 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: intel-device-plugin-gpu
+  name: intel-gpu-plugin
   namespace: system
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
-      chart: intel-device-plugins-gpu
-      version: 0.25.1
+      chart: app-template
+      version: 1.2.0
+      interval: 30m
       sourceRef:
         kind: HelmRepository
-        name: intel-charts
+        name: bjw-s-charts
         namespace: flux-system
-  maxHistory: 3
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
-  dependsOn:
-    - name: intel-device-plugin-operator
-      namespace: system
+
   values:
-    name: intel-gpu-plugin
-    # sharedDevNum: 2
-    nodeFeatureRule: true
+    controller:
+      type: daemonset
+      strategy: RollingUpdate
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+    image:
+      repository: docker.io/intel/intel-gpu-plugin
+      tag: 0.25.1
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/custom-intel-gpu
+                  operator: In
+                  values:
+                    - "true"
+
+    args:
+      - -shared-dev-num
+      - "2"
+
+    service:
+      main:
+        enabled: false
+
+    ingress:
+      main:
+        enabled: false
+
+    persistence:
+      devfs:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/dri
+        hostPathType: Directory
+        readOnly: true
+      sysfs:
+        enabled: true
+        type: hostPath
+        hostPath: /sys/class/drm
+        hostPathType: Directory
+        readOnly: true
+      kubeletsockets:
+        enabled: true
+        type: hostPath
+        hostPathType: Directory
+        hostPath: /var/lib/kubelet/device-plugins
+
+    # TODO(intel-gpu-plugin): Write probes to check for something to tell if it's working
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 64M
