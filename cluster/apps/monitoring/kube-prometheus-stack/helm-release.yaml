@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 42.3.0
+      version: 43.2.1
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -200,7 +200,7 @@ spec:
         externalLabels:
           cluster: home-cluster
         thanos:
-          image: quay.io/thanos/thanos:v0.29.0
+          image: quay.io/thanos/thanos:v0.30.0
           version: "v0.29.0"
         podAntiAffinity: hard
         ruleSelectorNilUsesHelmValues: false
@@ -259,14 +259,14 @@ spec:
             static_configs:
               - targets:
                   - "kvm01.${SECRET_PRIVATE_DOMAIN}"
-          - job_name: kvm02
-            scrape_interval: 1m
-            scrape_timeout: 10s
-            metrics_path: /api/export/prometheus/metrics
-            basic_auth:
-              username: "${SECRET_KVM_USERNAME}"
-              password: "${SECRET_KVM_PASSWORD}"
-            honor_timestamps: true
-            static_configs:
-              - targets:
-                  - "kvm02.${SECRET_PRIVATE_DOMAIN}"
+          # - job_name: kvm02
+          #   scrape_interval: 1m
+          #   scrape_timeout: 10s
+          #   metrics_path: /api/export/prometheus/metrics
+          #   basic_auth:
+          #     username: "${SECRET_KVM_USERNAME}"
+          #     password: "${SECRET_KVM_PASSWORD}"
+          #   honor_timestamps: true
+          #   static_configs:
+          #     - targets:
+          #         - "kvm02.${SECRET_PRIVATE_DOMAIN}"

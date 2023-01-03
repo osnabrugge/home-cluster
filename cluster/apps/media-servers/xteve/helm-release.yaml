@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: echo-server
-  namespace: networking
+  name: &app xteve
+  namespace: media-servers
 spec:
   interval: 15m
   chart:
@@ -14,6 +14,7 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
+      interval: 15m
   install:
     createNamespace: true
     remediation:
@@ -21,43 +22,35 @@ spec:
   upgrade:
     remediation:
       retries: 5
+  dependsOn:
+    - name: ingress-nginx
+      namespace: networking
   values:
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
     image:
-      repository: docker.io/jmalloc/echo-server
-      tag: 0.3.4
+      repository: alturismo/xteve
+      tag: latest@sha256:7885f2759c0da3c5f2c72b2e45ba4b602bdd7d6f04cc6abba201091f11c93a95
+      pullPolicy: IfNotPresent
+    env:
+      TZ: ${TIMEZONE}
     service:
       main:
+        type: LoadBalancer
+        externalIPs: ["${SVC_XTEVE_ADDR}"]
+        externalTrafficPolicy: Local
         ports:
           http:
-            port: &port 8080
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /health
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
+            port: 34400
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: "true"
+          auth.home.arpa/enabled: "true"
+          nginx.ingress.kubernetes.io/app-root: /web
           hajimari.io/enable: "true"
-          hajimari.io/icon: "video-input-antenna"
+          hajimari.io/icon: sports
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &host "xteve.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -65,11 +58,9 @@ spec:
           - hosts:
               - *host
           - secretName: "${CLUSTER_CERT_SECRET}"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: xteve-config
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
-    resources:
-      requests:
-        cpu: 5m
-        memory: 10Mi
-      limits:
-        memory: 50Mi

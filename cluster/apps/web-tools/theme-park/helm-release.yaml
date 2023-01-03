@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.2.0
+      version: 1.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -27,7 +27,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/onedr0p/theme-park
-      tag: 1.13.1
+      tag: 1.13.3
     service:
       main:
         ports:
