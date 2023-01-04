@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: external-secrets
-  namespace: kube-system
+  namespace: security
 spec:
   interval: 15m
   chart:
@@ -31,9 +31,15 @@ spec:
     leaderElect: true
     serviceMonitor:
       enabled: true
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
     webhook:
       serviceMonitor:
         enabled: true
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
     certController:
       serviceMonitor:
         enabled: true
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
