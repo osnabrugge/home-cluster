@@ -200,7 +200,7 @@ spec:
         externalLabels:
           cluster: home-cluster
         thanos:
-          image: quay.io/thanos/thanos:v0.30.0
+          image: quay.io/thanos/thanos:v0.30.1
           version: "v0.29.0"
         podAntiAffinity: hard
         ruleSelectorNilUsesHelmValues: false
